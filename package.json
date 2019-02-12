@@ -2,10 +2,11 @@
   "name": "aka-course-landing-web",
   "version": "1.0.0",
   "description": "",
-  "main": "behavior.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "@Mikesomen",
-  "license": "ISC"
+  "author": "@Mikesosam",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.1"
+  }
 }
