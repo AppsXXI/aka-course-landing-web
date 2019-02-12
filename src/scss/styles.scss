@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'header';
 
+body {
+  background: $variable;
+}
+
 button {
   color: $variable;
 }
