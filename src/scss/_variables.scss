@@ -1,1 +1,29 @@
-$variable: blue;
+// COLORS
+
+$yellow-first: #ffff01;
+
+// SIZES
+
+/* Screen */
+$wide-width: 1200px;
+$screen-height: 100vh;
+
+/* Banner */
+$banner-title-size: 76px;
+$banner-title-arrows-size: 1.5em;
+$banner-title-arrows-top-separation: 5px;
+
+/* Buttons */
+$btn-font-size: 28px;
+$btn-height: 1.5em;
+$btn-line-height: 1.8em;
+
+/* Inputs */
+$input-font-size: 15px;
+$input-height: 2.5em;
+$input-line-height: 2.5em;
+
+/* Form buttons */
+$btn-form-font-size: 24px;
+$btn-form-height: calc(1.5em + 1px);
+$btn-form-line-height: 1.7em;

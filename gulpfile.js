@@ -8,7 +8,8 @@ const reload = browserSync.reload;
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const teddySettings = {
-  setTemplateRoot: 'src/'
+  setTemplateRoot: 'src/',
+  compileAtEveryRender: true,
 };
 
 teddy.settings(teddySettings);
@@ -37,7 +38,27 @@ gulp.task('js', function () {
     .pipe(reload({ stream: true }));
 });
 
-gulp.task('html', gulp.series(['sass', 'js'], function () {
+gulp.task('assets', function() {
+  console.log('# Task "assets" started...');
+
+  return gulp
+    .src('src/assets/**/*')
+    .pipe(gulp.dest('.tmp/assets'))
+    .pipe(reload({ stream: true }));
+});
+
+gulp.task('fonts', function() {
+  console.log('# Task "fonts" started...');
+
+  return gulp
+    .src([
+      'src/fonts/*',
+      'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+    ])
+    .pipe(gulp.dest('.tmp/webfonts'));
+});
+
+gulp.task('html', gulp.series(['sass', 'js', 'assets', 'fonts'], function () {
   console.log('# Task "html" started...');
   
   return gulp
@@ -53,6 +74,7 @@ gulp.task('html', gulp.series(['sass', 'js'], function () {
 gulp.task('watch', gulp.series('html', function (done) {
   gulp.watch('src/scss/**/*.scss', gulp.series('sass'));
   gulp.watch('src/js/**/*.js', gulp.series('js'));
+  gulp.watch('src/assets/**/*', gulp.series('assets'));
   gulp.watch('src/**/*.html', gulp.series('html'));
   done();
 }));
