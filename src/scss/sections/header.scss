@@ -1,4 +1,4 @@
-@import 'variables';
+@import '../variables';
 
 header {
   display: grid;
@@ -101,10 +101,11 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      top: 95%;
+      bottom: -15px;
       font-size: 40px;
       
       span {
+        position: relative;
         font-size: 78px;
         transform: rotate(90deg);
         display: block;
