@@ -6,12 +6,8 @@ $description-color: #575756;
 .market-data {
   .inner-grid {
     display: grid;
-    width: $wide-width;
-    margin: auto;
-    padding: 80px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
-
 
     article {
       display: grid;

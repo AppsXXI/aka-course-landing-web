@@ -27,6 +27,14 @@ body {
 
 img { display: block; }
 
+ul, li, p, input {
+  font-family: 'Myriad Regular';
+}
+
+ul {
+  margin: 0;
+}
+
 .hide-overflow {
   overflow: hidden;
 }
@@ -86,7 +94,6 @@ form.form {
       height: $input-height;
       line-height: $input-line-height;
       margin-bottom: .5em;
-      font-family: 'Myriad Regular';
       font-size: $input-font-size;
       border: 1px solid #999;
 
@@ -108,7 +115,6 @@ form.form {
     clear: both;
 
     p {
-      font-family: 'Myriad Regular';
       font-size: 15px;
     }
   }
@@ -123,5 +129,36 @@ form.form {
 
   &.last-split {
     padding-left: .25em;
+  }
+}
+
+.section-grey {
+  position: relative;
+  margin-top: 30px;
+  background: $section-grey;
+}
+
+.inner-section {
+  width: $wide-width;
+  margin: auto;
+  padding: 80px;
+}
+
+.section-title {
+  display: inline-block;
+  height: 1.8em;
+  margin: 0;
+  padding: .4em .7em;
+  font-size: 40px;
+  font-weight: normal;
+  text-transform: uppercase;
+  background: $yellow-first;
+}
+
+.section-grey {
+  .section-title {
+    position: absolute;
+    top: 0;
+    transform: translate(80px, -50%);
   }
 }
