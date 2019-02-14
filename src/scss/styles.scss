@@ -1,10 +1,128 @@
 @import 'variables';
+@import 'fonts';
 @import 'header';
 
-body {
-  background: $variable;
+::-webkit-scrollbar-thumb {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: $yellow-first;
+  min-height: 40px;
 }
 
-button {
-  color: $variable;
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+}
+
+* {
+  font-family: 'Dinn Condensed';
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img { display: block; }
+
+.hide-overflow {
+  overflow: hidden;
+}
+
+.push-left {
+  float: left;
+}
+
+.push-right {
+  float: right;
+}
+
+.btn {
+  padding: 0 .5em;
+  height: $btn-height;
+  line-height: $btn-line-height;
+  font-size: $btn-font-size;
+  background: $yellow-first;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+
+  &.btn-circular {
+    width: $btn-height;
+    height: $btn-height;
+    line-height: $btn-line-height;
+    font-size: $btn-font-size;
+    border-radius: 50%;
+  }
+}
+
+.white-text {
+  color: #fff;
+}
+
+.yellow-text {
+  color: $yellow-first;
+}
+
+.shadow {
+  filter: drop-shadow(0 0 20px #000);
+}
+
+form.form {
+  padding: .5em;
+
+  .form-control {
+    width: 100%;
+    float: left;
+
+    input {
+      position: relative;
+      padding: .5em;
+      width: 100%;
+      height: $input-height;
+      line-height: $input-line-height;
+      margin-bottom: .5em;
+      font-family: 'Myriad Regular';
+      font-size: $input-font-size;
+      border: 1px solid #999;
+
+      &::placeholder {
+        line-height: $input-line-height;
+      }
+    }
+
+    button {
+      width: 100%;
+      height: $btn-form-height;
+      line-height: $btn-form-line-height;
+      margin-bottom: .5em;
+      font-size: $btn-form-font-size;
+    }
+  }
+  
+  .form-message {
+    clear: both;
+
+    p {
+      font-family: 'Myriad Regular';
+      font-size: 15px;
+    }
+  }
+}
+
+.split-50-50 {
+  width: 50% !important;
+
+  &.first-split {
+    padding-right: .25em;
+  }
+
+  &.last-split {
+    padding-left: .25em;
+  }
 }
