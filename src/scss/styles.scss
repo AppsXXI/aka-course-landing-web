@@ -2,6 +2,20 @@
 @import 'fonts';
 @import 'header';
 
+::-webkit-scrollbar-thumb {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: $yellow-first;
+  min-height: 40px;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+}
+
 * {
   font-family: 'Dinn Condensed';
   box-sizing: border-box;
@@ -34,6 +48,17 @@ img { display: block; }
   background: $yellow-first;
   border: none;
   text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+
+  &.btn-circular {
+    width: $btn-height;
+    height: $btn-height;
+    line-height: $btn-line-height;
+    font-size: $btn-font-size;
+    border-radius: 50%;
+  }
 }
 
 .white-text {

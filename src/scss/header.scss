@@ -88,23 +88,30 @@ header {
         text-transform: uppercase;
       }
 
-      .form-control {
-        position: relative;
-        
-        input {
-          position: relative;
-        }
-
-        button {
-          position: relative;
-        }
-      }
-      
       .form-message {
         p {
           text-align: center;
           color: #fff;
         }
+      }
+    }
+
+    .btn.btn-circular {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 95%;
+      font-size: 40px;
+      
+      span {
+        font-size: 78px;
+        transform: rotate(90deg);
+        display: block;
+        width: 100%;
+        height: 100%;
+        left: 2px;
+        top: 1px;
       }
     }
   }
