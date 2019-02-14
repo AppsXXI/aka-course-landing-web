@@ -1,20 +1,18 @@
 @import '../variables';
 
-$creativity-color: #d6d4b5;
-$description-color: #575756;
-
 .course-objectives {
   .inner-grid {
     position: relative;
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 80px;
     
     .content {
       ul.objectives {
+        margin-bottom: 40px;
+        color: $description-color;
         font-size: 18px;
         line-height: 2em;
-        margin-bottom: 40px;
       }
     }
 

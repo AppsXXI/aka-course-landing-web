@@ -54,26 +54,6 @@ header {
     justify-content: center;
     align-items: center;
 
-    .title {
-      width: 700px;
-      padding-left: 30px;
-      font-size: $banner-title-size;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: normal;
-      line-height: .9em;
-      margin: 0;
-      margin-bottom: .5em;
-      
-      .first-arrow,
-      .last-arrow {
-        position: relative;
-        top: $banner-title-arrows-top-separation;
-        color: $yellow-first;
-        font-size: $banner-title-arrows-size;
-      }
-    }
-
     .form.more-info {
       position: relative;
       width: 400px;

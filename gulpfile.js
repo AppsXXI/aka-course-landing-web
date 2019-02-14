@@ -20,9 +20,11 @@ gulp.task('sass', function () {
   return gulp
     .src([
       'src/scss/styles.scss',
+      'src/scss/fragments/first-title.scss',
       'src/scss/sections/header.scss',
       'src/scss/sections/market.scss',
       'src/scss/sections/objectives.scss',
+      'src/scss/sections/about.scss',
     ])
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
