@@ -8,6 +8,10 @@
     grid-gap: 80px;
     
     .content {
+      h1.section-title {
+        transform: translate(80px, -50%);
+      }
+
       ul.objectives {
         margin-bottom: 40px;
         color: $description-color;

@@ -1,0 +1,90 @@
+@import '../variables';
+
+.outer-section {
+  .inner-section {
+    .content {
+      .methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 40px;
+
+        article.method {
+          display: grid;
+          grid-template-columns: 100px auto;
+          grid-gap: 20px;
+
+          .creativity {
+            span {
+              // display: flex;
+              width: 100px;
+              height: 100px;
+              // justify-content: center;
+              // align-items: center;
+              border-radius: 50%;
+              // background: $creativity-color;
+            
+              // i {
+              //   color: #fff;
+              //   font-size: 70px;
+              // }
+
+              // &.rec-icon {
+              //   position: relative;
+
+              //   i.custom-rec {
+              //     position: relative;
+
+              //     &:after {
+              //       position: relative;
+
+              //     }
+              //   }
+
+              //   i.rec-label {
+              //     text-transform: uppercase;
+              //     color: #fff;
+              //   }
+              // }
+            }
+    
+            // span.zero {
+            //   display: flex;
+            //   width: 100px;
+            //   height: 100px;
+            //   justify-content: center;
+            //   padding-top: 8px;
+            //   align-items: center;
+            //   border: 15px solid $creativity-color;
+            //   border-radius: 50%;
+            //   font-size: 48px;
+              
+            //   span.value {
+            //     font-weight: 600;
+            //   }
+              
+            //   span.percent {
+            //     font-size: 30px;
+            //   }
+            // }
+          }
+          
+          .description {
+            h4 {
+              margin: 0;
+              margin-bottom: .5em;
+              font-size: 28px;
+              font-weight: normal;
+              text-transform: uppercase;
+            }
+            
+            p {
+              font-family: 'Myriad Regular';
+              font-size: 14px;
+              color: $description-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
