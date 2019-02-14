@@ -23,6 +23,11 @@
 body {
   margin: 0;
   padding: 0;
+  cursor: url(../assets/icons/arrow.png) 0 0, auto;
+}
+
+a, button {
+  cursor: url(../assets/icons/pointer.png) 0 0, auto;
 }
 
 img { display: block; }
