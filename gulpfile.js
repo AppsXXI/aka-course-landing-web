@@ -18,8 +18,11 @@ gulp.task('sass', function () {
   console.log('# Task "sass" started...');
 
   return gulp
-    // .src('src/scss/styles.scss')
-    .src('src/scss/**/*.scss')
+    .src([
+      'src/scss/styles.scss',
+      'src/scss/sections/header.scss',
+      'src/scss/sections/market.scss',
+    ])
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))

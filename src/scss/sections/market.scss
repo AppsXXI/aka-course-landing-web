@@ -1,0 +1,79 @@
+@import '../variables';
+
+$creativity-color: #d6d4b5;
+$description-color: #575756;
+
+.market-data {
+  .inner-grid {
+    display: grid;
+    width: $wide-width;
+    margin: auto;
+    padding: 80px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+
+
+    article {
+      display: grid;
+      grid-template-columns: 100px auto;
+      grid-gap: 20px;
+
+      .creativity {
+        i {
+          color: $creativity-color;
+          font-size: 100px;
+        }
+
+        span.zero {
+          display: flex;
+          width: 100px;
+          height: 100px;
+          justify-content: center;
+          padding-top: 8px;
+          align-items: center;
+          border: 15px solid $creativity-color;
+          border-radius: 50%;
+          font-size: 48px;
+          
+          span.value {
+            font-weight: 600;
+          }
+          
+          span.percent {
+            font-size: 30px;
+          }
+        }
+      }
+      
+      .content {
+        h4 {
+          margin: 0;
+          margin-bottom: .5em;
+          font-size: 30px;
+          text-transform: uppercase;
+        }
+        
+        p {
+          font-family: 'Myriad Regular';
+          font-size: 14px;
+          color: $description-color;
+        }
+      }
+      
+      &.needs {
+        position: relative;
+        
+      }
+      
+      &.employ-area {
+        position: relative;
+        
+      }
+      
+      &.employ-salary {
+        position: relative;
+
+      }
+    }
+  }
+}
