@@ -13,7 +13,7 @@
         <a href="mailto:contacto@appsxxi.com" target="_blank"><i class="far fa-envelope"></i></a>
       </li>
       <li class="nav-item">
-        <button class="btn">Inscribirme</button>
+        <button class="btn enable-on-load" data-modal="pre-roll-form-modal" disabled>Inscribirme</button>
       </li>
     </ul>
   </nav>
@@ -24,22 +24,22 @@
     <form action="/process-more-info-form" method="POST" class="form more-info shadow">
       <h3>Solicitar + Información</h3>
       <div class="form-control">
-        <input type="text" placeholder="Nombre y Apellido">
+        <input type="text" placeholder="Nombre y Apellido" class="enable-on-load" disabled>
       </div>
       <div class="form-control">
-        <input type="text" placeholder="e-mail">
+        <input type="text" placeholder="e-mail" class="enable-on-load" disabled>
       </div>
       <div class="form-control split-50-50 first-split">
-        <input type="text" placeholder="Teléfono/Celular">
+        <input type="text" placeholder="Teléfono/Celular" class="enable-on-load" disabled>
       </div>
       <div class="form-control split-50-50 last-split">
-        <button class="btn">Enviar</button>
+        <button class="btn enable-on-load" disabled>Enviar</button>
       </div>
       <div class="form-message">
         <p>¡Te contactaremos a la brevedad!</p>
       </div>
     </form>
 
-    <a href="#" class="continue btn btn-circular"><span>›</span></a>
+    <a href="#market" class="continue btn btn-circular"><span>›</span></a>
   </section>
 </header>

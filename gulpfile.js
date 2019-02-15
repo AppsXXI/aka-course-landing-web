@@ -29,6 +29,7 @@ gulp.task('sass', function () {
       'src/scss/sections/how-it-works.scss',
       'src/scss/sections/teacher.scss',
       'src/scss/sections/footer.scss',
+      'src/scss/sections/modals.scss',
     ])
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))

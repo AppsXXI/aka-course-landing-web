@@ -32,8 +32,14 @@ a, button {
 
 img { display: block; }
 
-ul, li, p, input {
+ul, li, p, input, select, select option {
   font-family: 'Myriad Regular';
+}
+
+input, select, button {
+  &:disabled {
+    opacity: .3;
+  }
 }
 
 ul {
@@ -53,6 +59,7 @@ ul {
 }
 
 .btn {
+  display: inline-block;
   padding: 0 .5em;
   height: $btn-height;
   line-height: $btn-line-height;
@@ -64,12 +71,25 @@ ul {
   text-align: center;
   color: #000;
 
+  &:disabled {
+    opacity: .3;
+  }
+
   &.btn-circular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: $btn-height;
     height: $btn-height;
     line-height: $btn-line-height;
     font-size: $btn-font-size;
     border-radius: 50%;
+  }
+
+  &.btn-outline {
+    background: #fff;
+    border: 2px solid #333;
+    color: #333;
   }
 }
 
@@ -92,7 +112,9 @@ form.form {
     width: 100%;
     float: left;
 
-    input {
+    input,
+    select,
+    select option {
       position: relative;
       padding: .5em;
       width: 100%;
@@ -103,7 +125,7 @@ form.form {
       border: 1px solid #999;
 
       &::placeholder {
-        line-height: $input-line-height;
+        line-height: 1.5em;
       }
     }
 
