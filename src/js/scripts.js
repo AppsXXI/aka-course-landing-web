@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let elementsDisabled = document.querySelectorAll('.enable-on-load');
+  var elementsDisabled = document.querySelectorAll('.enable-on-load');
 
-  elementsDisabled.forEach((element) => {
+  elementsDisabled.forEach(function (element) {
     element.removeAttribute('disabled');
   });
 });
