@@ -116,16 +116,16 @@ form.form {
     select,
     select option {
       position: relative;
-      padding: .5em;
+      padding: .3em .5em 0;
       width: 100%;
       height: $input-height;
-      line-height: $input-line-height;
+      // line-height: $input-line-height;
       margin-bottom: .5em;
       font-size: $input-font-size;
       border: 1px solid #999;
 
       &::placeholder {
-        line-height: 1.5em;
+        line-height: $input-line-height;
       }
     }
 
