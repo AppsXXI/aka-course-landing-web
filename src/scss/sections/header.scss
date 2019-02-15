@@ -5,6 +5,7 @@ header {
   grid-template-rows: max-content;
   height: $screen-height;
   background-image: url(../assets/banner-background.jpg);
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -23,7 +24,6 @@ header {
 
     .first-nav {
       display: flex;
-      
       list-style: none;
       margin: 0;
       padding: 0;
