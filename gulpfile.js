@@ -11,6 +11,19 @@ const teddySettings = {
   setTemplateRoot: 'src/',
   compileAtEveryRender: true,
 };
+const styles = [
+  'src/scss/styles.scss',
+  'src/scss/fragments/first-title.scss',
+  'src/scss/sections/header.scss',
+  'src/scss/sections/market.scss',
+  'src/scss/sections/objectives.scss',
+  'src/scss/sections/about.scss',
+  'src/scss/sections/modules.scss',
+  'src/scss/sections/how-it-works.scss',
+  'src/scss/sections/teacher.scss',
+  'src/scss/sections/footer.scss',
+  'src/scss/sections/modals.scss',
+];
 
 teddy.settings(teddySettings);
 
@@ -18,19 +31,7 @@ gulp.task('sass', function () {
   console.log('# Task "sass" started...');
 
   return gulp
-    .src([
-      'src/scss/styles.scss',
-      'src/scss/fragments/first-title.scss',
-      'src/scss/sections/header.scss',
-      'src/scss/sections/market.scss',
-      'src/scss/sections/objectives.scss',
-      'src/scss/sections/about.scss',
-      'src/scss/sections/modules.scss',
-      'src/scss/sections/how-it-works.scss',
-      'src/scss/sections/teacher.scss',
-      'src/scss/sections/footer.scss',
-      'src/scss/sections/modals.scss',
-    ])
+    .src(styles)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
@@ -42,18 +43,7 @@ gulp.task('sass', function () {
 
 gulp.task('sass:prod', function () {
   return gulp
-    .src([
-      'src/scss/styles.scss',
-      'src/scss/fragments/first-title.scss',
-      'src/scss/sections/header.scss',
-      'src/scss/sections/market.scss',
-      'src/scss/sections/objectives.scss',
-      'src/scss/sections/about.scss',
-      'src/scss/sections/modules.scss',
-      'src/scss/sections/how-it-works.scss',
-      'src/scss/sections/teacher.scss',
-      'src/scss/sections/footer.scss',
-    ])
+    .src(styles)
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
     .pipe(concat('styles.css'))
