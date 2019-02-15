@@ -137,6 +137,20 @@ form.form {
   }
 }
 
+.split-70-30 {
+  float: left;
+
+  &.first-split {
+    width: 70% !important;
+    padding-right: .25em;
+  }
+
+  &.last-split {
+    width: 30% !important;
+    padding-left: .25em;
+  }
+}
+
 .section-grey {
   position: relative;
   margin-top: 30px;

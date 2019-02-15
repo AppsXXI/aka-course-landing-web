@@ -28,12 +28,13 @@ gulp.task('sass', function () {
       'src/scss/sections/modules.scss',
       'src/scss/sections/how-it-works.scss',
       'src/scss/sections/teacher.scss',
+      'src/scss/sections/footer.scss',
     ])
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
-    .pipe(sourcemaps.write())
     .pipe(concat('styles.css'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp/css'))
     .pipe(reload({ stream: true }));
 });
