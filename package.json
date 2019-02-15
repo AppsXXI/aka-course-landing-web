@@ -4,6 +4,10 @@
   "description": "",
   "author": "@Mikesosam",
   "license": "ISC",
+  "scripts": {
+    "start": "node app-serve",
+    "postinstall": "gulp build"
+  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "browser-sync": "^2.26.3",
@@ -14,5 +18,10 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-teddy": "^1.6.1",
     "gulp-uglify": "^3.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
   }
 }

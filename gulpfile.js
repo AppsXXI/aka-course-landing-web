@@ -39,15 +39,42 @@ gulp.task('sass', function () {
     .pipe(reload({ stream: true }));
 });
 
+gulp.task('sass:prod', function () {
+  return gulp
+    .src([
+      'src/scss/styles.scss',
+      'src/scss/fragments/first-title.scss',
+      'src/scss/sections/header.scss',
+      'src/scss/sections/market.scss',
+      'src/scss/sections/objectives.scss',
+      'src/scss/sections/about.scss',
+      'src/scss/sections/modules.scss',
+      'src/scss/sections/how-it-works.scss',
+      'src/scss/sections/teacher.scss',
+      'src/scss/sections/footer.scss',
+    ])
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('dist/css'));
+});
+
 gulp.task('js', function () {
   console.log('# Task "JS", started...');
   
   return gulp
     .src('src/js/**/*.js')
     .pipe(concat('scripts.js'))
-    .pipe(uglify())
     .pipe(gulp.dest('.tmp/js'))
     .pipe(reload({ stream: true }));
+});
+
+gulp.task('js:prod', function () {
+  return gulp
+    .src('src/js/**/*.js')
+    .pipe(concat('scripts.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('assets', function() {
@@ -59,6 +86,12 @@ gulp.task('assets', function() {
     .pipe(reload({ stream: true }));
 });
 
+gulp.task('assets:prod', function() {
+  return gulp
+    .src('src/assets/**/*')
+    .pipe(gulp.dest('dist/assets'));
+});
+
 gulp.task('fonts', function() {
   console.log('# Task "fonts" started...');
 
@@ -67,7 +100,17 @@ gulp.task('fonts', function() {
       'src/fonts/*',
       'node_modules/@fortawesome/fontawesome-free/webfonts/*'
     ])
-    .pipe(gulp.dest('.tmp/webfonts'));
+    .pipe(gulp.dest('.tmp/webfonts'))
+    .pipe(reload({ stream: true }));
+});
+
+gulp.task('fonts:prod', function() {
+  return gulp
+    .src([
+      'src/fonts/*',
+      'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+    ])
+    .pipe(gulp.dest('dist/webfonts'));
 });
 
 gulp.task('html', gulp.series(['sass', 'js', 'assets', 'fonts'], function () {
@@ -81,6 +124,16 @@ gulp.task('html', gulp.series(['sass', 'js', 'assets', 'fonts'], function () {
     .pipe(teddy.compile())
     .pipe(gulp.dest('.tmp'))
     .pipe(reload({ stream: true }));
+}));
+
+gulp.task('html:prod', gulp.series(['sass:prod', 'js:prod', 'assets:prod', 'fonts:prod'], function () {
+  return gulp
+    .src([
+      'src/**/*.html',
+      '!src/templates/**/*.html'
+    ])
+    .pipe(teddy.compile())
+    .pipe(gulp.dest('dist'));
 }));
 
 gulp.task('watch', gulp.series('html', function (done) {
@@ -100,3 +153,4 @@ gulp.task('serve', gulp.series('watch', function () {
 }));
 
 gulp.task('default', gulp.series('html'));
+gulp.task('build', gulp.series('html:prod'));
