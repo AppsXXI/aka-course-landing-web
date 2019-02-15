@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let modalLinks = document.querySelectorAll('[data-modal]');
-  let closeModalLinks = document.querySelectorAll('[data-close-modal]');
-  let modalContainer = document.getElementById('modal-container');
+  var modalLinks = document.querySelectorAll('[data-modal]');
+  var closeModalLinks = document.querySelectorAll('[data-close-modal]');
+  var modalContainer = document.getElementById('modal-container');
   
-  modalLinks.forEach((element) => {
+  modalLinks.forEach(function (element) {
     element.addEventListener('click', function (event) {
       openModal(element.dataset.modal);
     });
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  closeModalLinks.forEach((closeLink) => {
+  closeModalLinks.forEach(function (closeLink) {
     closeLink.addEventListener('click', function(event) {
       closeModal();
     });
@@ -23,17 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function openModal(modalid) {
-  let body = document.getElementsByTagName('body')[0];
-  let modal = document.getElementById(modalid);
+  var body = document.getElementsByTagName('body')[0];
+  var modal = document.getElementById(modalid);
 
   body.classList.add('open-modal');
   modal.classList.add('opened');
 }
 
 function closeModal() {
-  let body = document.getElementsByTagName('body')[0];
-  let modals = document.querySelectorAll('.modal.opened');
-  let modalContainer = document.getElementById('modal-container');
+  var body = document.getElementsByTagName('body')[0];
+  var modals = document.querySelectorAll('.modal.opened');
+  var modalContainer = document.getElementById('modal-container');
 
   body.classList.add('close-modal');
   
@@ -41,7 +41,7 @@ function closeModal() {
     body.classList.remove('open-modal');
     body.classList.remove('close-modal');
   
-    modals.forEach((modal) => {
+    modals.forEach(function (modal) {
       modal.classList.remove('opened');
     });
 
