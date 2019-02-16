@@ -15,9 +15,6 @@ app.post('/process-more-info-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-  console.log(process.env.SENDGRID_API_KEY);
-  console.log(req.body);
-  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
@@ -81,6 +78,73 @@ app.post('/process-more-info-form', function (req, res) {
     if (response) {
       console.log(response);
       
+      res.status(200).send({ status: 'ok' });
+    }
+  });
+});
+
+app.post('/process-subscribe-form', function (req, res) {
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+  const adminMsg = {
+    to: 'miguel.sosa@appsxxi.com',
+    from: req.body.email,
+    subject: '[CDPW - Subscription] - ' + req.body.email,
+    text: `New subscription from ${req.body.email}`,
+    html: `
+    <table with="100%">
+      <tr>
+        <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <p>New subscription from</p>
+          <p><strong>Email</strong> ${req.body.email}</p>
+        </td>
+      </tr>
+    </table>
+    `
+  };
+
+  const userMsg = {
+    to: req.body.fullname + ' <' + req.body.email + '>',
+    from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com>',
+    subject: 'RE: Suscripción exitosa',
+    text: 'Hola.\nEste email fue autogenerado para informarte que tu suscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por suscribirte.',
+    html: `
+    <table with="100%">
+      <tr>
+        <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Hola.</p>
+          <p>Este email fue autogenerado para informarte que tu suscripción ha sido exitosa.</p>
+          <p>Recibirás novedades de nosotros a la brevedad.</p>
+          <p>Gracias por suscribirte.</p>
+        </td>
+      </tr>
+    </table>
+    `
+  };
+
+  sgMail.send(adminMsg, false, (error, response) => {
+    if (error) {
+      res.status(500).send({ status: 'error', error });
+    }
+    
+    if (response) {
+      res.status(200).send({ status: 'ok' });
+    }
+  });
+
+  sgMail.send(userMsg, false, (error, response) => {
+    if (error) {
+      res.status(500).send({ status: 'error', error });
+    }
+    
+    if (response) {
       res.status(200).send({ status: 'ok' });
     }
   });
