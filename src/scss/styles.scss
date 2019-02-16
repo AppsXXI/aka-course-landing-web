@@ -203,3 +203,35 @@ form.form {
     transform: translate(80px, -50%);
   }
 }
+
+.floating-message {
+  position: fixed;
+  padding: 40px;
+  width: 700px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  background-color: white;
+  border: 2px solid #fff;
+  box-shadow: 0 -20px 60px -20px #000;
+  font-family: Myriad Regular;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #fff;
+  transition: bottom .5s ease, opacity .5s ease;
+
+  &.success {
+    background-color: rgba(0, 155, 0, .8);
+  }
+  
+  &.error {
+    background-color: rgba(155, 0, 0, .8);
+  }
+  
+  &.visible {
+    opacity: 1;
+    bottom: 40px;
+  }
+}
