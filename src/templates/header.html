@@ -27,16 +27,16 @@
     <form action="/process-more-info-form" method="POST" class="form more-info shadow">
       <h3>Solicitar + Información</h3>
       <div class="form-control">
-        <input type="text" placeholder="Nombre y Apellido" class="enable-on-load" disabled>
+        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load" disabled>
       </div>
       <div class="form-control">
-        <input type="text" placeholder="e-mail" class="enable-on-load" disabled>
+        <input type="text" name="email" id="email" placeholder="e-mail" class="enable-on-load" disabled>
       </div>
       <div class="form-control split-50-50 first-split">
-        <input type="text" placeholder="Teléfono/Celular" class="enable-on-load" disabled>
+        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load" disabled>
       </div>
       <div class="form-control split-50-50 last-split">
-        <button class="btn enable-on-load" disabled>Enviar</button>
+        <button class="btn enable-on-load" type="submit" disabled>Enviar</button>
       </div>
       <div class="form-message">
         <p>¡Te contactaremos a la brevedad!</p>

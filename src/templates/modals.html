@@ -6,7 +6,7 @@
       <div class="modal-content">
         <p>¡Pre inscribite!</p>
         <p>Una vez pre inscripto nos comunicaremos con vos para formalizar el pago.</p>
-        <form action="/process-inscription-form" class="form">
+        <form action="/process-inscription-form" method="POST" class="form">
           <div class="form-control">
             <input type="text" name="name" id="name" placeholder="Nombre">
           </div>
@@ -20,20 +20,20 @@
             <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular">
           </div>
           <div class="form-control">
-            <input type="text" name="mail" id="mail" placeholder="e-mail">
+            <input type="text" name="email" id="email" placeholder="e-mail">
           </div>
           <div class="form-control">
             <select name="group" id="group">
               <option value="-">-- Selecciona el grupo de tu preferencia --</option>
               <option value="mj-9-11">Martes y jueves de 9 a 11 AM</option>
-              <option value="mv-173-193">Miércoles y viernes de 5:30 PM a 7:30 PM</option>
+              <option value="mv-1730-1930">Miércoles y viernes de 5:30 PM a 7:30 PM</option>
             </select>
           </div>
           <div class="form-control">
             <select name="payment" id="payment">
               <option value="-">-- Selecciona el medio de pago --</option>
               <option value="mp">Mercado Pago</option>
-              <option value="back">Depósito bancario</option>
+              <option value="banck">Depósito bancario</option>
               <option value="transfer">Giro Abitab o RedPagos</option>
             </select>
           </div>
