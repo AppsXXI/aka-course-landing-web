@@ -45,12 +45,9 @@ function handleFormRequest(event) {
     method: thisForm.getAttribute('method'),
     data,
     onProgress: function (progress) {
-      // Show loading or something
       setLoading(thisForm, progress.readyState);
     },
     onSuccess: function (response) {
-      // Discard loading and process response
-      console.log(response);
       removeLoading(thisForm);
 
       if (response.status !== 200) {
@@ -72,7 +69,7 @@ function doRequest(request) {
   }
 
   // fake url to test
-  request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
+  // request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
   
   var req = new XMLHttpRequest();
 
