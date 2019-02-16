@@ -28,7 +28,7 @@ app.post('/process-more-info-form', function (req, res) {
 
   const userMsg = {};
 
-  sgMail.send(msg);
+  sgMail.send(adminMsg);
   res.status(200).send({ status: 'ok' });
 });
 
