@@ -17,6 +17,8 @@ app.post('/process-more-info-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
@@ -85,6 +87,8 @@ app.post('/process-subscribe-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
@@ -152,6 +156,8 @@ app.post('/process-inscription-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
