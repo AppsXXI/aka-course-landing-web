@@ -22,11 +22,21 @@ app.post('/process-more-info-form', function (req, res) {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
     subject: '[CDPW - More Info] - ' + req.body.fullname,
-    text: 'Requesting more info\n' + req.body.fullname + '\n' + req.body.email,
-    html: '' +
-    '<strong>Requesting more info</strong>' +
-    '<strong>' + req.body.fullname + '</strong>' +
-    '<strong>' + req.body.email + '</strong>'
+    text: `Requesting more info from ${req.body.fullname} ${req.body.email} ${req.body.phone}`,
+    html: `
+    <table with="100%">
+      <tr>
+        <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Requesting more info from ${req.body.fullname}</p>
+          <p><strong>Email</strong> ${req.body.email}</p>
+          <p><strong>Telefono</strong> ${req.body.phone}</p>
+        </td>
+      </tr>
+    </table>
+    `
   };
 
   const userMsg = {
@@ -59,7 +69,7 @@ app.post('/process-more-info-form', function (req, res) {
     if (response) {
       console.log(response);
 
-      res.status(200).send({ status: 'ok', response });
+      res.status(200).send({ status: 'ok' });
     }
   });
 
@@ -71,7 +81,7 @@ app.post('/process-more-info-form', function (req, res) {
     if (response) {
       console.log(response);
       
-      res.status(200).send({ status: 'ok', response });
+      res.status(200).send({ status: 'ok' });
     }
   });
 });
