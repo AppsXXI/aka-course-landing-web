@@ -2,10 +2,12 @@ const express = require('express');
 const path = require('path');
 const bodyparser = require('body-parser');
 const app = express();
+// const cors = require('cors');
 
 app.use(express.static(__dirname + '/dist/'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+// app.use(cors());
 
 app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname + '/dist/index.html'));
@@ -15,6 +17,8 @@ app.post('/process-more-info-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
@@ -83,6 +87,8 @@ app.post('/process-subscribe-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
@@ -150,6 +156,8 @@ app.post('/process-inscription-form', function (req, res) {
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+  console.log(req.body);
+  
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
