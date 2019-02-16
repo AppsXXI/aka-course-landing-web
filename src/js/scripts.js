@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     element.removeAttribute('disabled');
   });
 
-  for (var form of pageForms) {
+  for (var i = 0; i < pageForms.length; i++) {
+    var form = pageForms[i];
     form.addEventListener('submit', handleFormRequest);
   }
 });
@@ -32,7 +33,8 @@ function handleFormRequest(event) {
   var reqUrl = thisForm.getAttribute('action');
   var data = {};
 
-  for (var input of thisForm.elements) {
+  for (var i = 0; i < thisForm.elements.length; i ++) {
+    var input = thisForm.elements[i];
     var inputName = input.getAttribute('name');
     
     if (inputName) {
@@ -43,7 +45,7 @@ function handleFormRequest(event) {
   doRequest({
     url: reqUrl,
     method: thisForm.getAttribute('method'),
-    data,
+    data: data,
     onProgress: function (progress) {
       setLoading(thisForm, progress.readyState);
     },
