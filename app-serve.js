@@ -60,7 +60,7 @@ app.post('/process-more-info-form', function (req, res) {
 
   sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
@@ -72,7 +72,7 @@ app.post('/process-more-info-form', function (req, res) {
 
   sgMail.send(userMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
@@ -131,7 +131,7 @@ app.post('/process-subscribe-form', function (req, res) {
 
   sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
@@ -141,7 +141,7 @@ app.post('/process-subscribe-form', function (req, res) {
 
   sgMail.send(userMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
@@ -202,7 +202,7 @@ app.post('/process-inscription-form', function (req, res) {
 
   sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
@@ -212,7 +212,7 @@ app.post('/process-inscription-form', function (req, res) {
 
   sgMail.send(userMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error: error.body.errors });
+      res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
     }
     
     if (response) {
