@@ -1,0 +1,48 @@
+<header>
+  <nav class="header-nav">
+    <span class="logo"><img src="/assets/logo.png" alt="Programación y Desarrollo Web"></span>
+
+    <ul class="first-nav">
+      <li class="nav-item">
+        <a href="https://www.facebook.com/ProgramacionYDesarrolloWEB" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="https://wa.me/59891066416" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </li>
+      <li class="nav-item">
+        <a href="mailto:contacto@appsxxi.com" target="_blank"><i class="far fa-envelope"></i></a>
+      </li>
+      <li class="nav-item no-on-scroll">
+        <button class="btn enable-on-load" data-modal="pre-roll-form-modal" disabled>Inscribirme</button>
+      </li>
+      <li class="nav-item on-scroll">
+        <a class="btn enable-on-load" data-modal="pre-roll-form-modal" disabled><i class="fas fa-signature"></i></a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="first-banner">
+    <include src="templates/fragments/first-title.html"></include>
+    
+    <form action="/process-more-info-form" method="POST" class="form more-info shadow">
+      <h3>Solicitar + Información</h3>
+      <div class="form-control">
+        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load" disabled>
+      </div>
+      <div class="form-control">
+        <input type="text" name="email" id="email" placeholder="e-mail" class="enable-on-load" disabled>
+      </div>
+      <div class="form-control split-50-50 first-split">
+        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load" disabled>
+      </div>
+      <div class="form-control split-50-50 last-split">
+        <button class="btn enable-on-load" type="submit" disabled>Enviar</button>
+      </div>
+      <div class="form-message">
+        <p>¡Te contactaremos a la brevedad!</p>
+      </div>
+    </form>
+
+    <a href="#market" class="continue btn btn-circular"><span>›</span></a>
+  </section>
+</header>

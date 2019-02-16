@@ -1,0 +1,59 @@
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+
+$dinn-condensed-url: '../webfonts/DINNextLTPro-Condensed_0.otf';
+$dinn-light-condensed-url: '../webfonts/DINNextLTPro-LightCondensed.otf';
+$dinn-medium-condensed-url: '../webfonts/DINNextLTPro-MediumCond.otf';
+$gotham-book-url: '../webfonts/Gotham-Book.otf';
+$myriad-regular-url: '../webfonts/MyriadPro-Regular_2.otf';
+$myriad-bold-url: '../webfonts/MyriadPro-Bold_0.otf';
+
+/* DINNextLTPro-Condensed */
+@font-face {
+  font-family: 'Dinn Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url($dinn-condensed-url) format('woff2');
+}
+
+/* DINNextLPro-LightCondensed */
+@font-face {
+  font-family: 'Dinn Light Condensed';
+  font-style: normal;
+  font-weight: 200;
+  src: url($dinn-light-condensed-url) format('woff2');
+}
+
+/* DINNextLPro-MediumCondensed */
+@font-face {
+  font-family: 'Dinn Medium Condensed';
+  font-style: normal;
+  font-weight: 500;
+  src: url($dinn-medium-condensed-url) format('woff2');
+}
+
+/* Gotham Book */
+@font-face {
+  font-family: 'Gotham Book';
+  font-style: normal;
+  font-weight: 300;
+  src: url($gotham-book-url) format('woff2');
+}
+
+/* Myriad Regular */
+@font-face {
+  font-family: 'Myriad Regular';
+  font-style: normal;
+  font-weight: 300;
+  src: url($myriad-regular-url) format('woff2');
+}
+
+/* Myriad Book */
+@font-face {
+  font-family: 'Myriad Bold';
+  font-style: normal;
+  font-weight: 500;
+  src: url($myriad-bold-url) format('woff2');
+}
