@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(express.static(__dirname + '/dist/'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(corse());
+app.use(cors());
 
 app.get('/', (req, res) => {
   return res.sendFile(path.join(__dirname + '/dist/index.html'));
