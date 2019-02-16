@@ -49,7 +49,7 @@ app.post('/process-more-info-form', function (req, res) {
       <tr>
         <td>
           <p>Hola ${req.body.fullname}</p>
-          <p>Este email fue autogenerado para informarte de tu pedido de más información.</p>
+          <p>Este email fue autogenerado para notificar de tu pedido de más información.</p>
           <p>Nos pondremos en contacto a la brevedar.</p>
           <p>Gracias por contactarnos.</p>
         </td>
@@ -60,7 +60,7 @@ app.post('/process-more-info-form', function (req, res) {
 
   sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error });
+      res.status(500).send({ status: 'error', error: error.body.errors });
     }
     
     if (response) {
@@ -72,7 +72,7 @@ app.post('/process-more-info-form', function (req, res) {
 
   sgMail.send(userMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error });
+      res.status(500).send({ status: 'error', error: error.body.errors });
     }
     
     if (response) {
@@ -131,7 +131,7 @@ app.post('/process-subscribe-form', function (req, res) {
 
   sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error });
+      res.status(500).send({ status: 'error', error: error.body.errors });
     }
     
     if (response) {
@@ -141,7 +141,78 @@ app.post('/process-subscribe-form', function (req, res) {
 
   sgMail.send(userMsg, false, (error, response) => {
     if (error) {
-      res.status(500).send({ status: 'error', error });
+      res.status(500).send({ status: 'error', error: error.body.errors });
+    }
+    
+    if (response) {
+      res.status(200).send({ status: 'ok' });
+    }
+  });
+});
+
+app.post('/process-inscription-form', function (req, res) {
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+  const adminMsg = {
+    to: 'miguel.sosa@appsxxi.com',
+    from: req.body.email,
+    subject: '[CDPW - Pre Inscripción] - ' + req.body.name + ' ' + req.body.lastname,
+    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nGroup: ${req.body.group}\nPayment method: ${req.body.payment}`,
+    html: `
+    <table with="100%">
+      <tr>
+        <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <p>New enrollment from ${req.body.name} ${req.body.lastname}</p>
+          <p><strong>Document</strong> ${req.body.document}</p>
+          <p><strong>Phone</strong> ${req.body.phone}</p>
+          <p><strong>Email</strong> ${req.body.email}</p>
+          <p><strong>Group</strong> ${req.body.group}</p>
+          <p><strong>Payment Method</strong> ${req.body.payment}</p>
+        </td>
+      </tr>
+    </table>
+    `
+  };
+
+  const userMsg = {
+    to: req.body.name + req.body.lastname + ' <' + req.body.email + '>',
+    from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com>',
+    subject: 'RE: Pre inscripción exitosa',
+    text: 'Hola ' + req.name + '.\nEste email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por pre inscribirte.',
+    html: `
+    <table with="100%">
+      <tr>
+        <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+      </tr>
+      <tr>
+        <td>
+          <p>Hola ${req.body.name}.</p>
+          <p>Este email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.</p>
+          <p>Recibirás novedades de nosotros a la brevedad.</p>
+          <p>Gracias por pre inscribirte.</p>
+        </td>
+      </tr>
+    </table>
+    `
+  };
+
+  sgMail.send(adminMsg, false, (error, response) => {
+    if (error) {
+      res.status(500).send({ status: 'error', error: error.body.errors });
+    }
+    
+    if (response) {
+      res.status(200).send({ status: 'ok' });
+    }
+  });
+
+  sgMail.send(userMsg, false, (error, response) => {
+    if (error) {
+      res.status(500).send({ status: 'error', error: error.body.errors });
     }
     
     if (response) {
