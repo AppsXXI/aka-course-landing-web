@@ -44,6 +44,53 @@ header {
             color: $yellow-first;
           }
         }
+
+        &.on-scroll {
+          display: none;
+
+          a {
+            padding: 0;
+            color: #000;
+          }
+        }
+      }
+
+      &.scrolling {
+        display: block;
+        position: fixed;
+        top: 50%;
+        right: 0;
+        z-index: 999;
+        transform: translateY(-50%);
+        box-shadow: -5px 0 15px -5px rgb(0,0,0);
+
+        .nav-item {
+          margin: 0;
+          padding: 0;
+
+          a {
+            color: #000;
+            background: #fff;
+
+            &:hover {
+              background: $yellow-first;
+            }
+          }
+
+          &.no-on-scroll {
+            display: none;
+          }
+          
+          &.on-scroll {
+            display: inline-block;
+  
+            a {
+              padding: 0;
+              background: $yellow-first;
+              color: #000;
+            }
+          }
+        }
       }
     }
   }
