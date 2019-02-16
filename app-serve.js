@@ -51,7 +51,7 @@ app.post('/process-more-info-form', function (req, res) {
     `
   };
 
-  sgMail.send(adminMsg, false, (err, response) => {
+  sgMail.send(adminMsg, false, (error, response) => {
     if (error) {
       res.status(500).send({ status: 'error', error });
     }
@@ -63,7 +63,7 @@ app.post('/process-more-info-form', function (req, res) {
     }
   });
 
-  sgMail.send(userMsg, false, (err, response) => {
+  sgMail.send(userMsg, false, (error, response) => {
     if (error) {
       res.status(500).send({ status: 'error', error });
     }
