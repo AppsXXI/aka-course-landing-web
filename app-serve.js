@@ -64,8 +64,6 @@ app.post('/process-more-info-form', function (req, res) {
     }
     
     if (response) {
-      console.log(response);
-
       res.status(200).send({ status: 'ok' });
     }
   });
@@ -76,8 +74,6 @@ app.post('/process-more-info-form', function (req, res) {
     }
     
     if (response) {
-      console.log(response);
-      
       res.status(200).send({ status: 'ok' });
     }
   });
