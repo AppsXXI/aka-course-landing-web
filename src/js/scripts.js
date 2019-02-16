@@ -13,8 +13,7 @@ document.addEventListener('scroll', function (event) {
   var windowHeight = window.outerHeight;
   var firstNav = document.querySelector('.first-nav');
 
-  // console.log(windowHeight)
-  if (scrollTop >= windowHeight) {
+  if (scrollTop >= (windowHeight / 2)) {
     firstNav.classList.add('scrolling');
   } else {
     firstNav.classList.remove('scrolling');
