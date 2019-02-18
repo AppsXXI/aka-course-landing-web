@@ -241,6 +241,7 @@ form.form {
   font-size: 18px;
   color: #fff;
   transition: bottom .5s ease, opacity .5s ease;
+  z-index: 9999;
 
   &.success {
     background-color: $yellow-first;
