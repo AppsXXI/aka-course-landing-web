@@ -23,12 +23,12 @@
     
     &:before {
       content: open-quote;
-      left: 15px;
+      // left: 15px;
     }
     
     &:after {
       content: close-quote;
-      right: 15px;
+      // right: 15px;
     }
   }
 }

@@ -1,105 +1,100 @@
 @import '../variables';
 
-.course-teachers {
-  .inner-section {
-    .content {
-      .section-title {
-        transform: translate(0, -50%);
-      }
+@media only screen and (max-width: 960px) {
+  .course-teachers {
+    .inner-section {
+      .content {
+        .section-title {
+          transform: translate(0, -50%);
+        }
 
-      .teachers {
-        .teacher {
-          display: grid;
-          grid-template-columns: auto 1fr;
-          grid-gap: 60px;
-
-          .picture-profile {
-            .picture {
-              border-radius: 50%;
-              overflow: hidden;
+        .teachers {
+          .teacher {
+            .picture-profile {
               margin-bottom: 2rem;
-              
-              img {
-                position: relative;
-              }
-            }
-            
-            h3.teacher-name {
-              margin: 0;
-              font-size: 28px;
-              text-align: center;
-              text-transform: uppercase;
-              height: 1.5em;
-              line-height: 1.7em;
-            }
-          }
 
-          .teacher-bio {
-            position: relative;
-            
-            q {
-              position: relative;
-              font-size: 16px;
-              line-height: 1.5em;
-
-              &:before, &:after {
-                position: absolute;
-                font-size: 48px;
-                color: $description-color;
-              }
-              
-              &:before {
-                content: open-quote;
-                top: 0;
-                left: -20px;
-              }
-              
-              &:after {
-                content: close-quote;
-                bottom: -25px;
-                right: -20px;
-              }
-
-              p {
-                margin: 0;
-              }
-            }
-            
-            .teacher-info-footer {
-              position: absolute;
-              width: 100%;
-              bottom: 0;
-              
-              .social-networks-nav {
-                display: flex;
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                float: left;
+              .picture {
+                border-radius: 50%;
+                overflow: hidden;
+                max-width: 218px;
+                margin: 0 auto 2rem;
                 
-                li.nav-item {
-                  margin-right: 15px;
+                img {
+                  width: 100%;
+                }
+              }
+              
+              h3.teacher-name {
+                margin: 0;
+                font-size: 28px;
+                text-align: center;
+                text-transform: uppercase;
+                height: 1.5em;
+                line-height: 1.7em;
+              }
+            }
 
-                  a {
-                    display: block;
-                    color: #000;
-                    width: $btn-height;
-                    height: $btn-height;
-                    line-height: $btn-line-height;
-                    font-size: $btn-font-size;
-                    text-align: center;
-                    
-                    &:hover {
-                      color: $yellow-first;
+            .teacher-bio {
+              q {
+                position: relative;
+                font-size: 16px;
+                line-height: 1.5em;
+
+                &:before, &:after {
+                  position: absolute;
+                  font-size: 48px;
+                  color: $description-color;
+                }
+                
+                &:before {
+                  content: open-quote;
+                  top: 0;
+                  left: -20px;
+                }
+                
+                &:after {
+                  content: close-quote;
+                  bottom: -25px;
+                  right: -20px;
+                }
+
+                p {
+                  margin: 0;
+                }
+              }
+              
+              .teacher-info-footer {
+                .social-networks-nav {
+                  display: flex;
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+                  margin-top: 40px;
+                  margin-bottom: 40px;
+                  
+                  li.nav-item {
+                    margin-right: 15px;
+
+                    a {
+                      display: block;
+                      color: #000;
+                      width: $btn-height;
+                      height: $btn-height;
+                      line-height: $btn-line-height;
+                      font-size: $btn-font-size;
+                      text-align: center;
+                      
+                      &:hover {
+                        color: $yellow-first;
+                      }
                     }
                   }
                 }
               }
-            }
-            
-            .btn {
-              position: relative;
-
+              
+              .btn {
+                float: none;
+              }
             }
           }
         }

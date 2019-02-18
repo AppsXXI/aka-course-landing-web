@@ -1,29 +1,37 @@
 @import '../variables';
 
-.course-objectives {
-  .inner-grid {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 80px;
-    
-    .content {
-      h1.section-title {
-        transform: translate(80px, -50%);
+@media only screen and (max-width: 960px) {
+  .course-objectives {
+    .inner-grid {
+      padding: 80px 40px;
+      display: flex;
+      flex-direction: column;
+      
+      .content {
+        order: 2;
+        
+        h1.section-title {
+          left: 0;
+          transform: translate(0, -50%);
+        }
+
+        ul.objectives {
+          margin-bottom: 40px;
+          padding-left: 30px;
+          color: $description-color;
+          font-size: 18px;
+          line-height: 2em;
+        }
       }
 
-      ul.objectives {
+      .creativity {
+        order: 1;
         margin-bottom: 40px;
-        color: $description-color;
-        font-size: 18px;
-        line-height: 2em;
-      }
-    }
-
-    .creativity {
-      img {
-        width: 100%;
-        max-width: 100%;
+        
+        img {
+          width: 100%;
+          max-width: 100%;
+        }
       }
     }
   }

@@ -1,58 +1,61 @@
 @import '../variables';
+@import 'footer-responsive';
 
-footer {
-  background-image: url(../assets/footer-background.jpg);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center 0;
-  box-shadow: inset 0px 5px 5px -5px rgb(0,0,0);
+@media only screen and (min-width: 961px) {
+  footer {
+    background-image: url(../assets/footer-background.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    box-shadow: inset 0px 5px 5px -5px rgb(0,0,0);
 
-  .footer-inner {
-    display: flex;
-    width: $wide-width;
-    padding: 80px;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-
-    form {
-      h3 {
-        margin: 0;
-        font-family: 'Dinn Light Condensed';
-        font-size: 30px;
-        font-weight: normal;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-      }
-    
-      width: 530px;
-    }
-  }
-  
-  .credits {
-    background: #fff;
-    
-    .inner-credits {
+    .footer-inner {
+      display: flex;
       width: $wide-width;
+      padding: 80px;
       margin: auto;
-      padding: 40px 80px;
-      overflow: hidden;
-      
-      .developed-by,
-      .designed-by {
-        display: flex;
-        align-items: center;
+      justify-content: center;
+      align-items: center;
 
-        span {
-          margin-right: 10px;
-          font-family: 'Gotham Book';
-          font-size: 13px;  
+      form {
+        h3 {
+          margin: 0;
+          font-family: 'Dinn Light Condensed';
+          font-size: 30px;
+          font-weight: normal;
+          text-align: center;
+          text-transform: uppercase;
+          color: #fff;
         }
+      
+        width: 530px;
+      }
+    }
+    
+    .credits {
+      background: #fff;
+      
+      .inner-credits {
+        width: $wide-width;
+        margin: auto;
+        padding: 40px 80px;
+        overflow: hidden;
         
-        img {
-          max-height: 20px;
+        .developed-by,
+        .designed-by {
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-right: 10px;
+            font-family: 'Gotham Book';
+            font-size: 13px;  
+          }
+          
+          img {
+            max-height: 20px;
+          }
         }
       }
     }
