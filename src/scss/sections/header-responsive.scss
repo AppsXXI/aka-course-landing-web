@@ -18,7 +18,7 @@
       align-items: center;
       width: auto;
       margin: 0;
-      padding-top: 6em;
+      padding-top: 7em;
       
       .logo {
         // position: relative;
@@ -115,22 +115,27 @@
         position: relative;
         
         h3 {
-          position: relative;
-          
+          margin: 0;
+          margin-bottom: .25em;
+          color: $yellow-first;
+          font-weight: normal;
+          font-size: 25px;
+          text-align: center;
+          text-transform: uppercase;
         }
         
         .form-message {
           position: relative;
 
           p {
-            position: relative;
-            
+            text-align: center;
+            color: #fff;
           }
         }
       }
       
       .btn.btn-circular {
-        position: relative;
+        display: none;
         
         span {
           position: relative;
