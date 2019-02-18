@@ -10,18 +10,14 @@
 
         .teachers {
           .teacher {
-            // display: grid;
-            // grid-template-columns: auto 1fr;
-            // grid-gap: 60px;
-
-
             .picture-profile {
               margin-bottom: 2rem;
 
               .picture {
                 border-radius: 50%;
                 overflow: hidden;
-                margin-bottom: 2rem;
+                max-width: 218px;
+                margin: 0 auto 2rem;
                 
                 img {
                   width: 100%;
