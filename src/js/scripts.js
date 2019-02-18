@@ -78,7 +78,7 @@ function doRequest(request) {
   }
 
   // fake url to test
-  request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
+  // request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
   
   var req = new XMLHttpRequest();
 
