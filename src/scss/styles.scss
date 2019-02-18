@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'fonts';
+@import 'responsive';
 
 ::-webkit-scrollbar-thumb {
   border: none;
@@ -62,6 +63,16 @@ ul {
   float: right;
 }
 
+@media only screen and (min-width: 961px) {
+  .mobile {
+    display: none;
+  }
+
+  .no-mobile {
+    display: initial;
+  }
+}
+
 .btn {
   display: inline-block;
   padding: 0 .5em;
@@ -109,6 +120,14 @@ ul {
   filter: drop-shadow(0 0 20px #000);
 }
 
+.box-shadow {
+  box-shadow: 0 0 20px #000;
+}
+
+.text-shadow {
+  text-shadow: 0 0 20px #000;
+}
+
 form.form {
   padding: .5em;
 
@@ -126,6 +145,7 @@ form.form {
       margin-bottom: .5em;
       font-size: $input-font-size;
       border: 1px solid #999;
+      border-radius: 0;
     }
 
     button {
@@ -179,7 +199,8 @@ form.form {
 }
 
 .inner-section {
-  width: $wide-width;
+  width: 100%;
+  max-width: $wide-width;
   margin: auto;
   padding: 80px;
 }
@@ -206,28 +227,28 @@ form.form {
 
 .floating-message {
   position: fixed;
-  padding: 40px;
-  width: 700px;
+  padding: 30px;
+  width: 90%;
+  max-width: 700px;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   opacity: 0;
   background-color: white;
-  border: 2px solid #fff;
   box-shadow: 0 -20px 60px -20px #000;
   font-family: Myriad Regular;
-  border-radius: 5px;
   font-size: 18px;
   color: #fff;
   transition: bottom .5s ease, opacity .5s ease;
 
   &.success {
-    background-color: rgba(0, 155, 0, .8);
+    background-color: $yellow-first;
+    color: #000;
   }
   
   &.error {
-    background-color: rgba(155, 0, 0, .8);
+    background-color: #ff0000;
   }
   
   &.visible {

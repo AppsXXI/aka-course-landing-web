@@ -1,26 +1,24 @@
 @import '../variables';
-@import 'market-responsive';
 
-@media only screen and (min-width: 961px) {
+@media only screen and (max-width: 960px) {
   .market-data {
     .inner-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 40px;
+      padding: 40px;
 
       article {
-        display: grid;
-        grid-template-columns: 100px auto;
-        grid-gap: 20px;
+        margin-bottom: 40px;
+        text-align: center;
 
         .creativity {
+          margin-bottom: 20px;
+
           i {
             color: $creativity-color;
             font-size: 100px;
           }
 
           span.zero {
-            display: flex;
+            display: inline-flex;
             width: 100px;
             height: 100px;
             justify-content: center;

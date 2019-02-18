@@ -18,11 +18,14 @@ document.addEventListener('scroll', function (event) {
   var scrollTop = body.scrollTop || html.scrollTop;
   var windowHeight = window.outerHeight;
   var firstNav = document.querySelector('.first-nav');
+  var minWidth = window.matchMedia("(min-width: 961px)")
 
-  if (scrollTop >= (windowHeight / 2)) {
-    firstNav.classList.add('scrolling');
-  } else {
-    firstNav.classList.remove('scrolling');
+  if (minWidth.matches) {
+    if (scrollTop >= (windowHeight / 2)) {
+      firstNav.classList.add('scrolling');
+    } else {
+      firstNav.classList.remove('scrolling');
+    }
   }
 });
 
@@ -51,12 +54,16 @@ function handleFormRequest(event) {
     },
     onSuccess: function (response) {
       removeLoading(thisForm);
-
+      
       if (response.status !== 200) {
         showMessage('error', 'Hubo un error al enviar los datos, por favor intenta más tarde.');
       } else {
         showMessage('success', 'Tus datos se han enviado correctamente. Nos comunicaremos a la brevedar.');
       }
+    },
+    onError: function (error) {
+      removeLoading(thisForm);
+      showMessage('error', 'Hubo un error al enviar los datos, por favor intenta más tarde.');
     }
   })
 }
@@ -80,7 +87,7 @@ function doRequest(request) {
   };
   
   req.onerror = function (error) {
-    request.onError ? request.onError({ status: error.target.status, response: JSON.parse(error.target.responseText) }) : console.error('Error:', JSON.parse(error.target.responseText) || 'Empty response');
+    request.onError ? request.onError({ status: error.target.status, response: error.target.responseText }) : console.error('Error:', JSON.parse(error.target.responseText) || 'Empty response');
   };
   
   req.onload = function (response) {
@@ -163,5 +170,8 @@ function showMessage(type, message) {
 
   setTimeout(function() {
     messageDiv.classList.remove('visible');
+    messageDiv.addEventListener('transitionends', function () {
+      console.log('REMOVE MESSAGE');
+    })
   }, 3500);
 }

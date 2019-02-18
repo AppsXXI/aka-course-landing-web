@@ -1,7 +1,6 @@
 @import '../variables';
-@import 'modals-responsive';
 
-@media only screen and (min-width: 961px) {
+@media only screen and (max-width: 960px) {
   .modal-outer {
     display: flex;
     justify-content: center;
@@ -12,28 +11,24 @@
     bottom: 0;
     left: 0;
     background-color: rgba(0,0,0,.4);
+    z-index: 9999;
 
     opacity: 0;
     visibility: hidden;
-    // transition: opacity .3s ease;
     
     .modal-inner {
       position: relative;
       top: 17px;
-      width: 500px;
-      padding: 80px;
+      width: 100%;
+      max-width: 500px;
+      padding: 40px;
       background: #fff;
-      border-radius: 5px;
       box-shadow: 0 -20px 60px -20px;
 
       transform: translateY(-10%);
       opacity: 0;
-      // transition: opacity .3s ease, transform .3s ease;
       
       .modal {
-        // opacity: 0;
-        // visibility: hidden;
-        
         .modal-title {
           position: absolute;
           top: 0;
@@ -98,4 +93,5 @@
       }
     }
   }
+
 }

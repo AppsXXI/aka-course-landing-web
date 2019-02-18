@@ -1,34 +1,33 @@
 @import '../variables';
-@import 'first-title-responsive';
 
-@media only screen and (min-width: 961px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 960px) {
   .title {
-    width: 680px;
     position: relative;
     quotes: "‹" "›";
-    font-size: $banner-title-size;
+    font-size: 36px;
     text-align: center;
     text-transform: uppercase;
     font-weight: normal;
     line-height: .9em;
-    margin: .3em 0;
+    margin: 1em 0;
     
     &:before,
     &:after {
       position: relative;
-      top: $banner-title-arrows-top-separation;
+      top: 3px;
       color: $yellow-first;
       font-size: $banner-title-arrows-size;
     }
     
     &:before {
       content: open-quote;
-      // left: 15px;
+      // left: 8px;
     }
     
     &:after {
       content: close-quote;
-      // right: 15px;
+      // right: 8px;
     }
   }
 }
