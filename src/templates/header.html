@@ -30,13 +30,13 @@
     <form action="/process-more-info-form" method="POST" class="form more-info shadow">
       <h3 class="text-shadow">Solicitar + Información</h3>
       <div class="form-control">
-        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load box-shadow" disabled>
+        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load box-shadow" disabled required>
       </div>
       <div class="form-control">
-        <input type="text" name="email" id="email" placeholder="e-mail" class="enable-on-load box-shadow" disabled>
+        <input type="email" name="email" id="email" placeholder="e-mail" class="enable-on-load box-shadow" disabled required>
       </div>
       <div class="form-control split-50-50 first-split">
-        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load box-shadow" disabled>
+        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load box-shadow" disabled required>
       </div>
       <div class="form-control split-50-50 last-split">
         <button class="btn box-shadow enable-on-load" type="submit" disabled>Enviar</button>
