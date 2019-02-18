@@ -1,0 +1,157 @@
+@import '../variables';
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 960px) {
+  header {
+    // display: grid;
+    // grid-template-rows: max-content;
+    // height: $screen-height;
+    background-image: url(../assets/banner-background.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: auto;
+      margin: 0;
+      padding-top: 6em;
+      
+      .logo {
+        // position: relative;
+        // display: block;
+        width: 120px;
+        height: 120px;
+        margin: auto;
+
+        img {
+          width: 100%;
+        }
+      }
+      
+      .first-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 1em;
+        background-color: #fff;
+
+        .nav-item {
+          position: relative;
+          
+          a {
+            display: block;
+            color: #000;
+            width: $btn-height;
+            height: $btn-height;
+            line-height: $btn-line-height;
+            font-size: $btn-font-size;
+            text-align: center;
+            background-color: $yellow-first;
+            
+            &:hover {
+              position: relative;
+              
+            }
+          }
+          
+          &.on-scroll {
+            position: relative;
+            
+            a {
+              position: relative;
+              
+            }
+          }
+        }
+        
+        &.scrolling {
+          position: relative;
+          
+          .nav-item {
+            position: relative;
+            
+            a {
+              position: relative;
+              
+              &:hover {
+                position: relative;
+                
+              }
+            }
+            
+            &.no-on-scroll {
+              position: relative;
+              
+            }
+            
+            &.on-scroll {
+              position: relative;
+              
+              a {
+                position: relative;
+                
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .first-banner {
+      position: relative;
+      
+      .form.more-info {
+        position: relative;
+        
+        h3 {
+          position: relative;
+          
+        }
+        
+        .form-message {
+          position: relative;
+
+          p {
+            position: relative;
+            
+          }
+        }
+      }
+      
+      .btn.btn-circular {
+        position: relative;
+        
+        span {
+          position: relative;
+          
+        }
+      }
+    }
+  }
+}
+
+// /* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {
+  
+// }
+
+// /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {
+
+// }
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: 992px) {
+
+// }

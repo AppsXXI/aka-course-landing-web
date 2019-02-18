@@ -18,11 +18,14 @@ document.addEventListener('scroll', function (event) {
   var scrollTop = body.scrollTop || html.scrollTop;
   var windowHeight = window.outerHeight;
   var firstNav = document.querySelector('.first-nav');
+  var minWidth = window.matchMedia("(min-width: 961px)")
 
-  if (scrollTop >= (windowHeight / 2)) {
-    firstNav.classList.add('scrolling');
-  } else {
-    firstNav.classList.remove('scrolling');
+  if (minWidth.matches) {
+    if (scrollTop >= (windowHeight / 2)) {
+      firstNav.classList.add('scrolling');
+    } else {
+      firstNav.classList.remove('scrolling');
+    }
   }
 });
 
