@@ -1,0 +1,60 @@
+@import '../variables';
+
+.course-modules {
+  .inner-section {
+    .content {
+      .section-title {
+        transform: translate(0, -50%);
+      }
+
+      .modules {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 60px;
+        margin-bottom: 40px;
+
+        .module {
+          position: relative;
+          
+          &:after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 1px;
+            top: 0;
+            bottom: 0;
+            background: $description-color;
+            transform: translateX(-30px);
+          }
+
+          &:first-child {
+            &:after {
+              display: none;
+            }
+          }
+          
+          h3.module-title {
+            margin: 0;
+            margin-bottom: 1em;
+            font-size: 23px;
+            font-weight: normal;
+            text-transform: uppercase;
+          }
+
+          p.module-description {
+            font-size: 14px;
+            color: $description-color;
+
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    // grid-gap: 20px;
+  
+  }
+}

@@ -1,0 +1,23 @@
+@media only screen and (max-width: 960px) {
+  .shadow {
+    filter: none !important;
+  }
+
+  .mobile {
+    display: initial;
+  }
+  
+  .no-mobile {
+    display: none;
+  }
+
+  .arrow-down {
+    a {
+      transform: rotate(90deg);
+
+      span {
+        font-size: 36px;
+      }
+    }
+  }
+}

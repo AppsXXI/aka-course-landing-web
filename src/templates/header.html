@@ -15,8 +15,11 @@
       <li class="nav-item no-on-scroll">
         <button class="btn enable-on-load" data-modal="pre-roll-form-modal" disabled>Inscribirme</button>
       </li>
-      <li class="nav-item on-scroll">
+      <li class="nav-item on-scroll no-mobile">
         <a class="btn enable-on-load" data-modal="pre-roll-form-modal" disabled><i class="fas fa-signature"></i></a>
+      </li>
+      <li class="nav-item mobile arrow-down">
+        <a href="#market" class="btn enable-on-load" disabled><span>›</span></a>
       </li>
     </ul>
   </nav>
@@ -25,20 +28,20 @@
     <include src="templates/fragments/first-title.html"></include>
     
     <form action="/process-more-info-form" method="POST" class="form more-info shadow">
-      <h3>Solicitar + Información</h3>
+      <h3 class="text-shadow">Solicitar + Información</h3>
       <div class="form-control">
-        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load" disabled>
+        <input type="text" name="fullname" id="fullname" placeholder="Nombre y Apellido" class="enable-on-load box-shadow" disabled>
       </div>
       <div class="form-control">
-        <input type="text" name="email" id="email" placeholder="e-mail" class="enable-on-load" disabled>
+        <input type="text" name="email" id="email" placeholder="e-mail" class="enable-on-load box-shadow" disabled>
       </div>
       <div class="form-control split-50-50 first-split">
-        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load" disabled>
+        <input type="text" name="phone" id="phone" placeholder="Teléfono/Celular" class="enable-on-load box-shadow" disabled>
       </div>
       <div class="form-control split-50-50 last-split">
-        <button class="btn enable-on-load" type="submit" disabled>Enviar</button>
+        <button class="btn box-shadow enable-on-load" type="submit" disabled>Enviar</button>
       </div>
-      <div class="form-message">
+      <div class="form-message text-shadow">
         <p>¡Te contactaremos a la brevedad!</p>
       </div>
     </form>
