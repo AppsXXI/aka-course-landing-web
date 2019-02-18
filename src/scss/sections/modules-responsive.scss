@@ -1,60 +1,53 @@
 @import '../variables';
 
-.course-modules {
-  .inner-section {
-    .content {
-      .section-title {
-        transform: translate(0, -50%);
-      }
+@media only screen and (max-width: 960px) {
+  .course-modules {
+    .inner-section {
+      padding: 80px 40px;
+      
+      .content {
+        .section-title {
+          transform: translate(0, -50%);
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
 
-      .modules {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 60px;
-        margin-bottom: 40px;
-
-        .module {
-          position: relative;
+        .modules {
+          margin-bottom: 40px;
           
-          &:after {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 1px;
-            top: 0;
-            bottom: 0;
-            background: $description-color;
-            transform: translateX(-30px);
-          }
-
-          &:first-child {
+          .module {
+            position: relative;
+            margin-bottom: 40px;
+            
             &:after {
+              content: "";
               display: none;
             }
-          }
-          
-          h3.module-title {
-            margin: 0;
-            margin-bottom: 1em;
-            font-size: 23px;
-            font-weight: normal;
-            text-transform: uppercase;
-          }
 
-          p.module-description {
-            font-size: 14px;
-            color: $description-color;
-
-            &:last-child {
+            h3.module-title {
               margin: 0;
+              margin-bottom: 1em;
+              font-size: 23px;
+              font-weight: normal;
+              text-transform: uppercase;
+            }
+
+            p.module-description {
+              font-size: 14px;
+              color: $description-color;
+
+              &:last-child {
+                margin: 0;
+              }
             }
           }
         }
+
+        .btn {
+          float: none;
+        }
       }
     }
-    // display: grid;
-    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    // grid-gap: 20px;
-  
   }
 }
