@@ -1,55 +1,56 @@
 @import '../variables';
 
-.market-data {
-  .inner-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+@media only screen and (max-width: 960px) {
+  .market-data {
+    .inner-grid {
+      padding: 40px;
 
-    article {
-      display: grid;
-      grid-template-columns: 100px auto;
-      grid-gap: 20px;
+      article {
+        margin-bottom: 40px;
+        text-align: center;
 
-      .creativity {
-        i {
-          color: $creativity-color;
-          font-size: 100px;
-        }
+        .creativity {
+          margin-bottom: 20px;
 
-        span.zero {
-          display: flex;
-          width: 100px;
-          height: 100px;
-          justify-content: center;
-          padding-top: 8px;
-          align-items: center;
-          border: 15px solid $creativity-color;
-          border-radius: 50%;
-          font-size: 48px;
-          
-          span.value {
-            font-weight: 600;
+          i {
+            color: $creativity-color;
+            font-size: 100px;
           }
-          
-          span.percent {
-            font-size: 30px;
+
+          span.zero {
+            display: inline-flex;
+            width: 100px;
+            height: 100px;
+            justify-content: center;
+            padding-top: 8px;
+            align-items: center;
+            border: 15px solid $creativity-color;
+            border-radius: 50%;
+            font-size: 48px;
+            
+            span.value {
+              font-weight: 600;
+            }
+            
+            span.percent {
+              font-size: 30px;
+            }
           }
-        }
-      }
-      
-      .content {
-        h4 {
-          margin: 0;
-          margin-bottom: .5em;
-          font-size: 30px;
-          text-transform: uppercase;
         }
         
-        p {
-          font-family: 'Myriad Regular';
-          font-size: 14px;
-          color: $description-color;
+        .content {
+          h4 {
+            margin: 0;
+            margin-bottom: .5em;
+            font-size: 30px;
+            text-transform: uppercase;
+          }
+          
+          p {
+            font-family: 'Myriad Regular';
+            font-size: 14px;
+            color: $description-color;
+          }
         }
       }
     }

@@ -199,7 +199,8 @@ form.form {
 }
 
 .inner-section {
-  width: $wide-width;
+  width: 100%;
+  max-width: $wide-width;
   margin: auto;
   padding: 80px;
 }
