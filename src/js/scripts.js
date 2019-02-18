@@ -54,12 +54,16 @@ function handleFormRequest(event) {
     },
     onSuccess: function (response) {
       removeLoading(thisForm);
-
+      
       if (response.status !== 200) {
         showMessage('error', 'Hubo un error al enviar los datos, por favor intenta más tarde.');
       } else {
         showMessage('success', 'Tus datos se han enviado correctamente. Nos comunicaremos a la brevedar.');
       }
+    },
+    onError: function (error) {
+      removeLoading(thisForm);
+      showMessage('error', 'Hubo un error al enviar los datos, por favor intenta más tarde.');
     }
   })
 }
@@ -74,7 +78,7 @@ function doRequest(request) {
   }
 
   // fake url to test
-  // request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
+  request.url = 'https://aka-course-landing-web-beta.herokuapp.com' + request.url;
   
   var req = new XMLHttpRequest();
 
@@ -83,7 +87,7 @@ function doRequest(request) {
   };
   
   req.onerror = function (error) {
-    request.onError ? request.onError({ status: error.target.status, response: JSON.parse(error.target.responseText) }) : console.error('Error:', JSON.parse(error.target.responseText) || 'Empty response');
+    request.onError ? request.onError({ status: error.target.status, response: error.target.responseText }) : console.error('Error:', JSON.parse(error.target.responseText) || 'Empty response');
   };
   
   req.onload = function (response) {
@@ -166,5 +170,8 @@ function showMessage(type, message) {
 
   setTimeout(function() {
     messageDiv.classList.remove('visible');
+    messageDiv.addEventListener('transitionends', function () {
+      console.log('REMOVE MESSAGE');
+    })
   }, 3500);
 }
