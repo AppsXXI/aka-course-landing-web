@@ -19,19 +19,19 @@
       .content {
         .title {
           width: auto;
-          text-align: left;
           padding: 0;
+          text-align: center;
           font-size: 48px;
           
-          &.shadow {
-            filter: none;
-          }
-
-          .first-arrow,
-          .last-arrow {
-            top: 3px;
+          &:before,
+          &:after {
+            text-shadow: 1px 1px 2px #000;
           }
           
+          &.text-shadow {
+            text-shadow: 1px 1px 2px #000;
+          }
+
           .white-text {
             color: #000;
           }
