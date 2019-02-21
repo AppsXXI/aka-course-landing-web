@@ -170,8 +170,10 @@ function showMessage(type, message) {
 
   setTimeout(function() {
     messageDiv.classList.remove('visible');
-    messageDiv.addEventListener('transitionends', function () {
-      console.log('REMOVE MESSAGE');
+    messageDiv.addEventListener('transitionend', function reset(event) {
+      if (!this.classList.contains('visible')) {
+        messageDiv.remove();
+      }
     })
   }, 3500);
 }
