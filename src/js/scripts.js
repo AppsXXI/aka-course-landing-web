@@ -58,6 +58,7 @@ function handleFormRequest(event) {
       if (response.status !== 200) {
         showMessage('error', 'Hubo un error al enviar los datos, por favor intenta más tarde.');
       } else {
+        resetFormAndModals(thisForm);
         showMessage('success', 'Tus datos se han enviado correctamente. Nos comunicaremos a la brevedar.');
       }
     },
@@ -176,4 +177,12 @@ function showMessage(type, message) {
       }
     })
   }, 3500);
+}
+
+function resetFormAndModals(form) {
+  if (form) {
+    form.reset();
+  }
+
+  closeModal();
 }
