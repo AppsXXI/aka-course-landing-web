@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var elementsDisabled = document.querySelectorAll('.enable-on-load');
   var pageForms = document.getElementsByTagName('form');
 
+  if (document.location.search.indexOf('inscribirme') > -1) {
+    openModal('pre-roll-form-modal');
+  }
+  
   elementsDisabled.forEach(function (element) {
     element.removeAttribute('disabled');
   });
