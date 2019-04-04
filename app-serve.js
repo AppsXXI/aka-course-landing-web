@@ -74,7 +74,7 @@ app.post('/process-more-info-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(res => {
+    .then(googleres => {
       console.log('Google responded successfuly');
 
       sgMail.send(adminMsg, false, (error, response) => {
@@ -149,7 +149,7 @@ app.post('/process-subscribe-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(res => {
+    .then(googleres => {
       sgMail.send(adminMsg, false, (error, response) => {
         if (error) {
           res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
@@ -226,7 +226,7 @@ app.post('/process-inscription-form', function (req, res) {
   };
 
   sendFormToSpreadsheet(req.body.group, req.body)
-  .then(res => {
+  .then(googleres => {
     sgMail.send(adminMsg, false, (error, response) => {
       if (error) {
         res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
