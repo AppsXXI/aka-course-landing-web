@@ -272,7 +272,7 @@ app.post('/process-inscription-form', function (req, res) {
     };
   }
 
-  sendFormToSpreadsheet(req.body.group, req.body)
+  sendFormToSpreadsheet(req.body.group || 'NO-GROUP-SELECTED', req.body)
   // .then(googleres => {
   //   sgMail.send(adminMsg, false, (error, response) => {
   //     if (error) {
