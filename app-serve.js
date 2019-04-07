@@ -23,16 +23,19 @@ function sendFormToSpreadsheet(sheetname, data) {
 }
 
 function sendGridEmail(message) {
+  console.log("Sending email... ");
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   
   const sendGridPromise = new Promise((resolve, reject) => {
     sgMail.send(message, false, (error, response) => {
       if (error) {
+        console.log(error);
         reject(error);
       }
       
       if (response) {
+        console.log(response);
         resolve(response);
       }
     });
