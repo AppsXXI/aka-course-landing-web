@@ -35,16 +35,18 @@ function closeModal() {
   var modals = document.querySelectorAll('.modal.opened');
   var modalContainer = document.getElementById('modal-container');
 
-  body.classList.add('close-modal');
-  
-  modalContainer.addEventListener('transitionend', function reset(event) {
-    body.classList.remove('open-modal');
-    body.classList.remove('close-modal');
-  
-    modals.forEach(function (modal) {
-      modal.classList.remove('opened');
+  if (modals.length) {
+    body.classList.add('close-modal');
+    
+    modalContainer.addEventListener('transitionend', function reset(event) {
+      body.classList.remove('open-modal');
+      body.classList.remove('close-modal');
+      
+      modals.forEach(function (modal) {
+        modal.classList.remove('opened');
+      });
+      
+      this.removeEventListener('transitionend', reset);
     });
-
-    this.removeEventListener('transitionend', reset);
-  });
+  }
 }
