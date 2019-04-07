@@ -37,7 +37,7 @@ a, button {
 
 img { display: block; }
 
-ul, li, p, input, select, select option {
+ul, li, p, input, select, select option, strong {
   font-family: 'Myriad Regular';
 }
 
@@ -134,6 +134,13 @@ form.form {
   .form-control {
     width: 100%;
     float: left;
+    margin-bottom: .5em;
+    
+    &.highlighted {
+      border: 3px solid #ffff01;
+      box-shadow: 3px 3px #000;
+      background: #ffff01;
+    }
 
     input,
     select,
@@ -142,7 +149,6 @@ form.form {
       padding: .3em .5em 0;
       width: 100%;
       height: $input-height;
-      margin-bottom: .5em;
       font-size: $input-font-size;
       border: 1px solid #999;
       border-radius: 0;
