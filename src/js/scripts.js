@@ -88,6 +88,10 @@ function doRequest(request) {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function (state) {
+    if (state.target.readyState === 4 && state.target.status !== 200) {
+      request.onError ? request.onError({ status: state.target.status, response: state.target.responseText }) : console.error('Error:', JSON.parse(state.target.responseText) || 'Empty response');
+    }
+
     request.onProgress ? request.onProgress(state.target) : null;
   };
   
