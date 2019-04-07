@@ -33,7 +33,7 @@ app.post('/process-more-info-form', function (req, res) {
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
-    subject: '[CDPW - More Info] - ' + req.body.fullname,
+    subject: '[CPDW - More Info] - ' + req.body.fullname,
     text: `Requesting more info from ${req.body.fullname} ${req.body.email} ${req.body.phone}`,
     html: `
     <table with="100%">
@@ -109,7 +109,7 @@ app.post('/process-subscribe-form', function (req, res) {
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
-    subject: '[CDPW - Subscription] - ' + req.body.email,
+    subject: '[CPDW - Subscription] - ' + req.body.email,
     text: `New subscription from ${req.body.email}`,
     html: `
     <table with="100%">
@@ -182,8 +182,8 @@ app.post('/process-inscription-form', function (req, res) {
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
-    subject: '[CDPW - Pre Inscripción] - ' + req.body.name + ' ' + req.body.lastname,
-    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nGroup: ${req.body.group}\nPayment method: ${req.body.payment}`,
+    subject: '[CPDW - Pre Inscripción] - ' + req.body.name + ' ' + req.body.lastname,
+    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nGroup: ${req.body.group}`,
     html: `
     <table with="100%">
       <tr>
@@ -196,7 +196,6 @@ app.post('/process-inscription-form', function (req, res) {
           <p><strong>Phone</strong> ${req.body.phone}</p>
           <p><strong>Email</strong> ${req.body.email}</p>
           <p><strong>Group</strong> ${req.body.group}</p>
-          <p><strong>Payment Method</strong> ${req.body.payment}</p>
         </td>
       </tr>
     </table>
