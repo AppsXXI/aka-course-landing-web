@@ -30,12 +30,12 @@ function sendGridEmail(message) {
   const sendGridPromise = new Promise((resolve, reject) => {
     sgMail.send(message, false, (error, response) => {
       if (error) {
-        console.log(error);
+        console.log("Error", error.body);
         reject(error);
       }
       
       if (response) {
-        console.log(response);
+        console.log("Ok", response.body);
         resolve(response);
       }
     });
