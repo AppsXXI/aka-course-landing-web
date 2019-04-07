@@ -206,7 +206,7 @@ app.post('/process-inscription-form', function (req, res) {
     to: req.body.name + req.body.lastname + ' <' + req.body.email + '>',
     from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com>',
     subject: 'RE: Pre inscripción exitosa',
-    text: 'Hola ' + req.name + '.\nEste email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por pre inscribirte.',
+    text: 'Hola ' + req.body.name + '.\nEste email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por pre inscribirte.',
     html: `
     <table with="100%">
       <tr>
@@ -224,6 +224,32 @@ app.post('/process-inscription-form', function (req, res) {
     `
   };
 
+  if (req.body.invite) {
+    console.log(req.body.invite);
+    const friendMessage = {
+      to: `${req.body.invite} <${req.body.invite}>`,
+      from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com',
+      subject: `¡Hola, ${req.body.name} te ha invitado a inscribirte!`,
+      text: `¡Hola!\n${req.body.name} te ha invitado a inscribirte con él al Curso de Programación y Desarrollo WEB, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:\n\nhttps://cursoweb.aka.uy/?invite=${req.body.email}\n\nSi no puedes hacer click en el link, cópialo y pégalo en el navegador.\n\n¡Con tu inscripción , ambos recibirán un 25% de descuento en el costo del curso!`,
+      html: `
+        ¡Con tu inscripción , ambos recibirán un 25% de descuento en el costo del curso!
+        <table with="100%">
+          <tr>
+            <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+          </tr>
+          <tr>
+            <td>
+              <p>¡Hola!</p>
+              <p>${req.body.name} te ha invitado a inscribirte con él al <strong>Curso de Programación y Desarrollo WEB</strong>, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:</p>
+              <p><a href="https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}">Inscribirme al Curso de Programación y Desarrollo WEB</a>
+              <p>Si no puedes hacer click en el link (https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}), cópialo y pégalo en el navegador.</p>
+              <p>¡Con tu inscripción, ambos recibirán un <strong>25% de descuento</strong> en el costo del curso!</p>
+            </td>
+          </tr>
+        </table>`
+    };
+  }
+
   sendFormToSpreadsheet(req.body.group, req.body)
   .then(googleres => {
     sgMail.send(adminMsg, false, (error, response) => {
@@ -237,6 +263,16 @@ app.post('/process-inscription-form', function (req, res) {
     });
   
     sgMail.send(userMsg, false, (error, response) => {
+      if (error) {
+        res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
+      }
+      
+      if (response) {
+        res.status(200).send({ status: 'ok' });
+      }
+    });
+
+    sgMail.send(friendMessage, false, (error, response) => {
       if (error) {
         res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
       }
