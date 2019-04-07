@@ -3,12 +3,12 @@ const axios = require('axios');
 const path = require('path');
 const bodyparser = require('body-parser');
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 
 app.use(express.static(__dirname + '/dist/'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-// app.use(cors());
+app.use(cors());
 
 function sendFormToSpreadsheet(sheetname, data) {
   const spreadUrl = 'https://script.google.com/macros/s/AKfycbxlchUlPv4XLRHKP_9vhDKcKsZ0YZAtQ65jdEHyCNbkGR_-l44J/exec';
@@ -29,12 +29,10 @@ function sendGridEmail(message) {
   const sendGridPromise = new Promise((resolve, reject) => {
     sgMail.send(message, false, (error, response) => {
       if (error) {
-        // res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
         reject(error);
       }
       
       if (response) {
-      //   res.status(200).send({ status: 'ok' });
         resolve(response);
       }
     });
@@ -48,9 +46,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/process-more-info-form', function (req, res) {
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
@@ -95,29 +90,6 @@ app.post('/process-more-info-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    // .then(googleres => {
-    //   console.log('Google responded successfuly');
-
-    //   sgMail.send(adminMsg, false, (error, response) => {
-    //     if (error) {
-    //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-    //     }
-        
-    //     if (response) {
-    //       res.status(200).send({ status: 'ok' });
-    //     }
-    //   });
-    
-    //   sgMail.send(userMsg, false, (error, response) => {
-    //     if (error) {
-    //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-    //     }
-        
-    //     if (response) {
-    //       res.status(200).send({ status: 'ok' });
-    //     }
-    //   });
-    // })
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
     .then(response => req.status(200).send({ status: 'ok' }))
@@ -125,9 +97,6 @@ app.post('/process-more-info-form', function (req, res) {
 });
 
 app.post('/process-subscribe-form', function (req, res) {
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
@@ -171,27 +140,6 @@ app.post('/process-subscribe-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    // .then(googleres => {
-    //   sgMail.send(adminMsg, false, (error, response) => {
-    //     if (error) {
-    //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-    //     }
-        
-    //     if (response) {
-    //       res.status(200).send({ status: 'ok' });
-    //     }
-    //   });
-    
-    //   sgMail.send(userMsg, false, (error, response) => {
-    //     if (error) {
-    //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-    //     }
-        
-    //     if (response) {
-    //       res.status(200).send({ status: 'ok' });
-    //     }
-    //   });
-    // })
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
     .then(response => req.status(200).send({ status: 'ok' }))
@@ -199,9 +147,6 @@ app.post('/process-subscribe-form', function (req, res) {
 });
 
 app.post('/process-inscription-form', function (req, res) {
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
@@ -273,45 +218,11 @@ app.post('/process-inscription-form', function (req, res) {
   }
 
   sendFormToSpreadsheet(req.body.group || 'NO-GROUP-SELECTED', req.body)
-  // .then(googleres => {
-  //   sgMail.send(adminMsg, false, (error, response) => {
-  //     if (error) {
-  //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-  //     }
-      
-  //     if (response) {
-  //       res.status(200).send({ status: 'ok' });
-  //     }
-  //   });
-  
-  //   sgMail.send(userMsg, false, (error, response) => {
-  //     if (error) {
-  //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-  //     }
-      
-  //     if (response) {
-  //       res.status(200).send({ status: 'ok' });
-  //     }
-  //   });
-
-  //   sgMail.send(friendMessage, false, (error, response) => {
-  //     if (error) {
-  //       res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-  //     }
-      
-  //     if (response) {
-  //       res.status(200).send({ status: 'ok' });
-  //     }
-  //   });
-  // })
-  // .catch(err => {
-  //   res.status(500).send({ status: 'error', error: err });
-  // });
-  .then(googleres => sendGridEmail(adminMsg))
-  .then(sendgridres => sendGridEmail(userMsg))
-  .then(sendgridres => sendGridEmail(friendMessage))
-  .then(response => req.status(200).send({ status: 'ok' }))
-  .catch(err => res.status(500).send({ status: 'error', error: err }));
+    .then(googleres => sendGridEmail(adminMsg))
+    .then(sendgridres => sendGridEmail(userMsg))
+    .then(sendgridres => sendGridEmail(friendMessage))
+    .then(response => req.status(200).send({ status: 'ok' }))
+    .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
 app.listen(process.env.PORT || 8080, () => {
