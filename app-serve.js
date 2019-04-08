@@ -29,17 +29,12 @@ function sendGridEmail(message) {
   
   const sendGridPromise = new Promise((resolve, reject) => {
     sgMail.send(message, false, (error, response) => {
-      console.log("error", error);
-      console.log("response", response);
-      
       if (error) {
-        console.log("Error", error.body);
-        reject(error);
+        return reject(error);
       }
       
       if (response) {
-        console.log("Ok", response.body);
-        resolve(response);
+        return resolve(response);
       }
     });
   });
@@ -96,10 +91,22 @@ app.post('/process-more-info-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(googleres => sendGridEmail(adminMsg))
-    .then(sendgridres => sendGridEmail(userMsg))
-    .then(response => req.status(200).send({ status: 'ok' }))
-    .catch(err => res.status(500).send({ status: 'error', error: err }));
+    .then(googleres => {
+      console.log("googleres", googleres);
+      return sendGridEmail(adminMsg);
+    })
+    .then(sendgridres => {
+      console.log("sendgridres", sendgridres);
+      return sendGridEmail(userMsg);
+    })
+    .then(response => {
+      console.log("response", response);
+      return req.status(200).send({ status: 'ok' });
+    })
+    .catch(err => {
+      console.log("err", err);
+      return res.status(500).send({ status: 'error', error: err })
+    });
 });
 
 app.post('/process-subscribe-form', function (req, res) {
