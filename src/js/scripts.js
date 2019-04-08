@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (inviteQuery) {
     var inviteInput = document.getElementById('invite');
     inviteInput.setAttribute('disabled', 'true');
-    inviteInput.setAttribute('name', 'inviter');
+    inviteInput.setAttribute('name', 'friend');
     inviteInput.value = inviteQuery;
   }
   
