@@ -4,8 +4,8 @@
       <h2 class="modal-title">Pre inscripción</h2>
 
       <div class="modal-content">
-        <p>¡Pre inscribite, da el primer paso!</p>
-        <p>Reservá tu lugar, recibí toda la información del curso y todas las novedades.</p>
+        <p>¡Pre inscribite ahora!</p>
+        <p>Reservá tu lugar e invitá a un amigo. Ambos recibirán un <strong>25% de descuento</strong> en el costo del curso.</p>
         <form action="/process-inscription-form" method="POST" class="form">
           <div class="form-control">
             <input type="text" name="name" id="name" placeholder="Nombre" required>
@@ -24,10 +24,13 @@
           </div>
           <div class="form-control">
             <select name="group" id="group" required>
-              <option>-- Selecciona el turno de tu preferencia --</option>
+              <option value="NO-GROUP-SELECTED">-- Selecciona el turno de tu preferencia --</option>
               <option value="GM-911">Por la mañana</option>
               <option value="GV-1719">Por la tarde</option>
             </select>
+          </div>
+          <div class="form-control highlighted">
+            <input type="email" name="invite" id="invite" placeholder="Invitá a un amigo">
           </div>
           <div class="form-control split-50-50 first-split">
             <button class="btn" type="submit">Inscribirme</button>

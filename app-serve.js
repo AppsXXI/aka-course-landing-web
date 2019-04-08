@@ -18,8 +18,26 @@ function sendFormToSpreadsheet(sheetname, data) {
     requestData.push(`${field}=${data[field]}`);
   }
   
-  console.log("Sending data to google spreadsheet... ");
   return axios.get(`${spreadUrl}?${requestData.join('&')}`);
+}
+
+function sendGridEmail(message) {
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  
+  const sendGridPromise = new Promise((resolve, reject) => {
+    sgMail.send(message, false, (error, response) => {
+      if (error) {
+        reject(error);
+      }
+      
+      if (response) {
+        resolve(response);
+      }
+    });
+  });
+
+  return sendGridPromise;
 }
 
 app.get('/', (req, res) => {
@@ -27,9 +45,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/process-more-info-form', function (req, res) {
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.fullname + ' <' + req.body.email + '>',
@@ -74,38 +89,13 @@ app.post('/process-more-info-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(googleres => {
-      console.log('Google responded successfuly');
-
-      sgMail.send(adminMsg, false, (error, response) => {
-        if (error) {
-          res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-        }
-        
-        if (response) {
-          res.status(200).send({ status: 'ok' });
-        }
-      });
-    
-      sgMail.send(userMsg, false, (error, response) => {
-        if (error) {
-          res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-        }
-        
-        if (response) {
-          res.status(200).send({ status: 'ok' });
-        }
-      });
-    })
-    .catch(err => {
-      res.status(500).send({ status: 'error', error: err });
-    });
+    .then(googleres => sendGridEmail(adminMsg))
+    .then(sendgridres => sendGridEmail(userMsg))
+    .then(response => res.status(200).send({ status: 'ok' }))
+    .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
 app.post('/process-subscribe-form', function (req, res) {
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
@@ -149,41 +139,18 @@ app.post('/process-subscribe-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(googleres => {
-      sgMail.send(adminMsg, false, (error, response) => {
-        if (error) {
-          res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-        }
-        
-        if (response) {
-          res.status(200).send({ status: 'ok' });
-        }
-      });
-    
-      sgMail.send(userMsg, false, (error, response) => {
-        if (error) {
-          res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-        }
-        
-        if (response) {
-          res.status(200).send({ status: 'ok' });
-        }
-      });
-    })
-    .catch(err => {
-      res.status(500).send({ status: 'error', error: err });
-    });
+    .then(googleres => sendGridEmail(adminMsg))
+    .then(sendgridres => sendGridEmail(userMsg))
+    .then(response => res.status(200).send({ status: 'ok' }))
+    .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
 app.post('/process-inscription-form', function (req, res) {
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
   const adminMsg = {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
     subject: '[CPDW - Pre Inscripción] - ' + req.body.name + ' ' + req.body.lastname,
-    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nGroup: ${req.body.group}`,
+    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nFriend: ${req.body.invite}\nGroup: ${req.body.group}`,
     html: `
     <table with="100%">
       <tr>
@@ -195,6 +162,7 @@ app.post('/process-inscription-form', function (req, res) {
           <p><strong>Document</strong> ${req.body.document}</p>
           <p><strong>Phone</strong> ${req.body.phone}</p>
           <p><strong>Email</strong> ${req.body.email}</p>
+          ${req.body.invite ? '<p><strong>Friend</strong> ' + req.body.invite + '</p>' : ''}
           <p><strong>Group</strong> ${req.body.group}</p>
         </td>
       </tr>
@@ -206,7 +174,7 @@ app.post('/process-inscription-form', function (req, res) {
     to: req.body.name + req.body.lastname + ' <' + req.body.email + '>',
     from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com>',
     subject: 'RE: Pre inscripción exitosa',
-    text: 'Hola ' + req.name + '.\nEste email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por pre inscribirte.',
+    text: 'Hola ' + req.body.name + '.\nEste email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.\n\nRecibirás novedades de nosotros a la brevedad.\n\nGracias por pre inscribirte.',
     html: `
     <table with="100%">
       <tr>
@@ -218,37 +186,52 @@ app.post('/process-inscription-form', function (req, res) {
           <p>Este email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.</p>
           <p>Recibirás novedades de nosotros a la brevedad.</p>
           <p>Gracias por pre inscribirte.</p>
+          ${req.body.invite ? '<p>Le hemos enviado un email con tu invitación a ' + req.body.invite + '.' : ''}
         </td>
       </tr>
     </table>
     `
   };
 
+  if (req.body.invite) {
+    var friendMessage = {
+      to: `${req.body.invite} <${req.body.invite}>`,
+      from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com',
+      subject: `¡Hola, ${req.body.name} te ha invitado a inscribirte!`,
+      text: `¡Hola!\n${req.body.name} te ha invitado a inscribirte con él al Curso de Programación y Desarrollo WEB, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:\n\nhttps://cursoweb.aka.uy/?invite=${req.body.email}\n\nSi no puedes hacer click en el link, cópialo y pégalo en el navegador.\n\n¡Con tu inscripción, ambos recibirán un 25% de descuento en el costo del curso!\n\n¡Anotate ahora, no pierdas esta oportunidad!\n\nEl equipo de Curso de Programación y Desarrollo WEB.`,
+      html: `
+        ¡Con tu inscripción , ambos recibirán un 25% de descuento en el costo del curso!
+        <table with="100%">
+          <tr>
+            <td><h1>Curso de Programación y Desarrollo WEB</h1></td>
+          </tr>
+          <tr>
+            <td>
+              <p>¡Hola!</p>
+              <p><strong>${req.body.name}</strong> te ha invitado a inscribirte con él al <strong>Curso de Programación y Desarrollo WEB</strong>, ponte en contacto con <strong>${req.body.name}</strong> para definir el horario, e inscribite usando el siguiente link:</p>
+              <p><a href="https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}">Inscribirme al Curso de Programación y Desarrollo WEB</a>
+              <p>Si no puedes hacer click en el link (https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}), cópialo y pégalo en el navegador.</p>
+              <p>¡Con tu inscripción, ambos recibirán un <strong>25% de descuento</strong> en el costo del curso!</p>
+              <p>¡Anotate ahora, no pierdas esta oportunidad!</p>
+              <p>El equipo de Curso de Programación y Desarrollo WEB.</p>
+            </td>
+          </tr>
+        </table>`
+    };
+  }
+
   sendFormToSpreadsheet(req.body.group, req.body)
-  .then(googleres => {
-    sgMail.send(adminMsg, false, (error, response) => {
-      if (error) {
-        res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
+    .then(googleres => sendGridEmail(adminMsg))
+    .then(sendgridres => sendGridEmail(userMsg))
+    .then(sendgridres => {
+      if (friendMessage) {
+        return sendGridEmail(friendMessage);
       }
-      
-      if (response) {
-        res.status(200).send({ status: 'ok' });
-      }
-    });
-  
-    sgMail.send(userMsg, false, (error, response) => {
-      if (error) {
-        res.status(500).send({ status: 'error', error: error.body ? error.body.errors : error });
-      }
-      
-      if (response) {
-        res.status(200).send({ status: 'ok' });
-      }
-    });
-  })
-  .catch(err => {
-    res.status(500).send({ status: 'error', error: err });
-  });
+
+      return sendgridres;
+    })
+    .then(response => res.status(200).send({ status: 'ok' }))
+    .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
 app.listen(process.env.PORT || 8080, () => {
