@@ -192,7 +192,7 @@ app.post('/process-inscription-form', function (req, res) {
   };
 
   if (req.body.invite) {
-    const friendMessage = {
+    var friendMessage = {
       to: `${req.body.invite} <${req.body.invite}>`,
       from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com',
       subject: `¡Hola, ${req.body.name} te ha invitado a inscribirte!`,
@@ -219,7 +219,13 @@ app.post('/process-inscription-form', function (req, res) {
   sendFormToSpreadsheet(req.body.group || 'NO-GROUP-SELECTED', req.body)
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
-    .then(sendgridres => sendGridEmail(friendMessage))
+    .then(sendgridres => {
+      if (friendMessage) {
+        return sendGridEmail(friendMessage);
+      }
+
+      return sendgridres;
+    })
     .then(response => res.status(200).send({ status: 'ok' }))
     .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
