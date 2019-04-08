@@ -3,12 +3,12 @@ const axios = require('axios');
 const path = require('path');
 const bodyparser = require('body-parser');
 const app = express();
-const cors = require('cors');
+// const cors = require('cors');
 
 app.use(express.static(__dirname + '/dist/'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 
 function sendFormToSpreadsheet(sheetname, data) {
   const spreadUrl = 'https://script.google.com/macros/s/AKfycbxlchUlPv4XLRHKP_9vhDKcKsZ0YZAtQ65jdEHyCNbkGR_-l44J/exec';
@@ -18,23 +18,21 @@ function sendFormToSpreadsheet(sheetname, data) {
     requestData.push(`${field}=${data[field]}`);
   }
   
-  console.log("Sending data to google spreadsheet... ");
   return axios.get(`${spreadUrl}?${requestData.join('&')}`);
 }
 
 function sendGridEmail(message) {
-  console.log(`Sending email to ${message.to}...`);
   const sgMail = require('@sendgrid/mail');
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   
   const sendGridPromise = new Promise((resolve, reject) => {
     sgMail.send(message, false, (error, response) => {
       if (error) {
-        return reject(error);
+        reject(error);
       }
       
       if (response) {
-        return resolve(response);
+        resolve(response);
       }
     });
   });
@@ -91,22 +89,10 @@ app.post('/process-more-info-form', function (req, res) {
   };
 
   sendFormToSpreadsheet('Suscripciones', req.body)
-    .then(googleres => {
-      console.log("googleres", googleres);
-      return sendGridEmail(adminMsg);
-    })
-    .then(sendgridres => {
-      console.log("sendgridres", sendgridres);
-      return sendGridEmail(userMsg);
-    })
-    .then(response => {
-      console.log("response", response);
-      return req.status(200).send({ status: 'ok' });
-    })
-    .catch(err => {
-      console.log("err", err);
-      return res.status(500).send({ status: 'error', error: err })
-    });
+    .then(googleres => sendGridEmail(adminMsg))
+    .then(sendgridres => sendGridEmail(userMsg))
+    .then(response => res.status(200).send({ status: 'ok' }))
+    .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
 app.post('/process-subscribe-form', function (req, res) {
@@ -155,7 +141,7 @@ app.post('/process-subscribe-form', function (req, res) {
   sendFormToSpreadsheet('Suscripciones', req.body)
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
-    .then(response => req.status(200).send({ status: 'ok' }))
+    .then(response => res.status(200).send({ status: 'ok' }))
     .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
@@ -234,7 +220,7 @@ app.post('/process-inscription-form', function (req, res) {
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
     .then(sendgridres => sendGridEmail(friendMessage))
-    .then(response => req.status(200).send({ status: 'ok' }))
+    .then(response => res.status(200).send({ status: 'ok' }))
     .catch(err => res.status(500).send({ status: 'error', error: err }));
 });
 
