@@ -150,7 +150,7 @@ app.post('/process-inscription-form', function (req, res) {
     to: 'miguel.sosa@appsxxi.com',
     from: req.body.email,
     subject: '[CPDW - Pre Inscripción] - ' + req.body.name + ' ' + req.body.lastname,
-    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nGroup: ${req.body.group}`,
+    text: `New enrollment from ${req.body.name} ${req.body.lastname}\nDocument: ${req.body.document}\nEmail: ${req.body.email}\nPhone: ${req.body.phone}\nFriend: ${req.body.invite}\nGroup: ${req.body.group}`,
     html: `
     <table with="100%">
       <tr>
@@ -162,6 +162,7 @@ app.post('/process-inscription-form', function (req, res) {
           <p><strong>Document</strong> ${req.body.document}</p>
           <p><strong>Phone</strong> ${req.body.phone}</p>
           <p><strong>Email</strong> ${req.body.email}</p>
+          ${req.body.invite ? '<p><strong>Friend</strong> ' + req.body.invite + '</p>' : ''}
           <p><strong>Group</strong> ${req.body.group}</p>
         </td>
       </tr>
@@ -185,6 +186,7 @@ app.post('/process-inscription-form', function (req, res) {
           <p>Este email fue autogenerado para informarte que tu pre inscripción ha sido exitosa.</p>
           <p>Recibirás novedades de nosotros a la brevedad.</p>
           <p>Gracias por pre inscribirte.</p>
+          ${req.body.invite ? '<p>Le hemos enviado un email con tu invitación a ' + req.body.invite + '.' : ''}
         </td>
       </tr>
     </table>
@@ -196,7 +198,7 @@ app.post('/process-inscription-form', function (req, res) {
       to: `${req.body.invite} <${req.body.invite}>`,
       from: 'Curso de Programación y Desarrollo WEB <contacto@appsxxi.com',
       subject: `¡Hola, ${req.body.name} te ha invitado a inscribirte!`,
-      text: `¡Hola!\n${req.body.name} te ha invitado a inscribirte con él al Curso de Programación y Desarrollo WEB, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:\n\nhttps://cursoweb.aka.uy/?invite=${req.body.email}\n\nSi no puedes hacer click en el link, cópialo y pégalo en el navegador.\n\n¡Con tu inscripción , ambos recibirán un 25% de descuento en el costo del curso!`,
+      text: `¡Hola!\n${req.body.name} te ha invitado a inscribirte con él al Curso de Programación y Desarrollo WEB, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:\n\nhttps://cursoweb.aka.uy/?invite=${req.body.email}\n\nSi no puedes hacer click en el link, cópialo y pégalo en el navegador.\n\n¡Con tu inscripción, ambos recibirán un 25% de descuento en el costo del curso!\n\n¡Anotate ahora, no pierdas esta oportunidad!\n\nEl equipo de Curso de Programación y Desarrollo WEB.`,
       html: `
         ¡Con tu inscripción , ambos recibirán un 25% de descuento en el costo del curso!
         <table with="100%">
@@ -206,10 +208,12 @@ app.post('/process-inscription-form', function (req, res) {
           <tr>
             <td>
               <p>¡Hola!</p>
-              <p>${req.body.name} te ha invitado a inscribirte con él al <strong>Curso de Programación y Desarrollo WEB</strong>, ponte en contacto con ${req.body.name} para definir el horario, e inscribite usando el siguiente link:</p>
+              <p><strong>${req.body.name}</strong> te ha invitado a inscribirte con él al <strong>Curso de Programación y Desarrollo WEB</strong>, ponte en contacto con <strong>${req.body.name}</strong> para definir el horario, e inscribite usando el siguiente link:</p>
               <p><a href="https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}">Inscribirme al Curso de Programación y Desarrollo WEB</a>
               <p>Si no puedes hacer click en el link (https://cursoweb.aka.uy/?inscribirme&invite=${req.body.email}), cópialo y pégalo en el navegador.</p>
               <p>¡Con tu inscripción, ambos recibirán un <strong>25% de descuento</strong> en el costo del curso!</p>
+              <p>¡Anotate ahora, no pierdas esta oportunidad!</p>
+              <p>El equipo de Curso de Programación y Desarrollo WEB.</p>
             </td>
           </tr>
         </table>`
