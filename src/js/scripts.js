@@ -10,8 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (inviteQuery) {
-    document.getElementById('invite').setAttribute('disabled', 'true');
-    document.getElementById('invite').value = inviteQuery;
+    var inviteInput = document.getElementById('invite');
+    inviteInput.setAttribute('disabled', 'true');
+    inviteInput.setAttribute('name', 'inviter');
+    inviteInput.value = inviteQuery;
   }
   
   elementsDisabled.forEach(function (element) {
