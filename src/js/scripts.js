@@ -210,7 +210,7 @@ function getQueryParams(params) {
   var allParams = {};
   var returnParams = {};
   
-  searchParams.forEach(param => {
+  searchParams.forEach(function (param) {
     var paramApart = param.split('=');
     var paramKey = paramApart[0];
     var paramValue = paramApart[1] || true;
@@ -226,7 +226,7 @@ function getQueryParams(params) {
   }
 
   if (params.length) {
-    params.forEach(param => {
+    params.forEach(function (param) {
       returnParams[param] = allParams[param];
     });
 
