@@ -216,7 +216,7 @@ app.post('/process-inscription-form', function (req, res) {
     };
   }
 
-  sendFormToSpreadsheet(req.body.group || 'NO-GROUP-SELECTED', req.body)
+  sendFormToSpreadsheet(req.body.group, req.body)
     .then(googleres => sendGridEmail(adminMsg))
     .then(sendgridres => sendGridEmail(userMsg))
     .then(sendgridres => {
