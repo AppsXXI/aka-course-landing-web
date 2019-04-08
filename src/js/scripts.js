@@ -1,9 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
   var elementsDisabled = document.querySelectorAll('.enable-on-load');
   var pageForms = document.getElementsByTagName('form');
+  var enrollQuery = getQueryParams('inscribirme');
+  var inviteQuery = getQueryParams('invite');
 
-  if (document.location.search.indexOf('inscribirme') > -1) {
+  if (enrollQuery) {
     openModal('pre-roll-form-modal');
+    document.getElementById('name').focus();
+  }
+
+  if (inviteQuery) {
+    var inviteInput = document.getElementById('invite');
+    inviteInput.setAttribute('disabled', 'true');
+    inviteInput.setAttribute('name', 'inviter');
+    inviteInput.value = inviteQuery;
   }
   
   elementsDisabled.forEach(function (element) {
@@ -22,7 +32,7 @@ document.addEventListener('scroll', function (event) {
   var scrollTop = body.scrollTop || html.scrollTop;
   var windowHeight = window.outerHeight;
   var firstNav = document.querySelector('.first-nav');
-  var minWidth = window.matchMedia("(min-width: 961px)")
+  var minWidth = window.matchMedia('(min-width: 961px)')
 
   if (minWidth.matches) {
     if (scrollTop >= (windowHeight / 2)) {
@@ -88,6 +98,10 @@ function doRequest(request) {
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function (state) {
+    if (state.target.readyState === 4 && state.target.status !== 200) {
+      request.onError ? request.onError({ status: state.target.status, response: state.target.responseText }) : console.error('Error:', JSON.parse(state.target.responseText) || 'Empty response');
+    }
+
     request.onProgress ? request.onProgress(state.target) : null;
   };
   
@@ -189,4 +203,37 @@ function resetFormAndModals(form) {
   }
 
   closeModal();
+}
+
+function getQueryParams(params) {
+  var search = document.location.search;
+  var searchCleanup = search.split('?').join('');
+  var searchParams = searchCleanup.split('&');
+  var allParams = {};
+  var returnParams = {};
+  
+  searchParams.forEach(function (param) {
+    var paramApart = param.split('=');
+    var paramKey = paramApart[0];
+    var paramValue = paramApart[1] || true;
+    allParams[paramKey] = paramValue;
+  });
+
+  if (!params) {
+    return allParams;
+  }
+
+  if (typeof params === 'string') {
+    return allParams[params];
+  }
+
+  if (params.length) {
+    params.forEach(function (param) {
+      returnParams[param] = allParams[param];
+    });
+
+    return returnParams;
+  }
+
+  throw new Error('[params] should be a key or a list of keys');
 }
